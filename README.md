@@ -20,8 +20,9 @@ App de encuestas con Flask y MySQL, lista para desplegar en Railway.
 
 1. Agrega un proyecto nuevo en Railway.
 2. Selecciona `Deploy from GitHub` o sube tu repositorio.
-3. En `Settings > Environment`, agrega la variable:
-   - `MYSQL_URL` con la URL que Railway te provee para el servicio MySQL
+3. En `Settings > Environment`, agrega estas variables:
+   - `SECRET_KEY` con una cadena larga y secreta.
+   - `MYSQL_URL` con la URL que Railway provee para el servicio MySQL.
 
 Railway crea `MYSQL_URL` con el formato:
 

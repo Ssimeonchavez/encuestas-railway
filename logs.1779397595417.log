@@ -1,0 +1,1244 @@
+2026-05-21T21:05:27.683137008Z [err]  [2026-05-21 21:05:26 +0000] [3] [INFO] Booting worker with pid: 3
+2026-05-21T21:05:27.683139042Z [err]      return self.load_wsgiapp()
+2026-05-21T21:05:27.683146059Z [err]  [2026-05-21 21:05:27 +0000] [3] [ERROR] Exception in worker process
+2026-05-21T21:05:27.683151582Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.683153144Z [err]  Traceback (most recent call last):
+2026-05-21T21:05:27.683160340Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-05-21T21:05:27.683172444Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-05-21T21:05:27.683178189Z [err]      worker.init_process()
+2026-05-21T21:05:27.683183633Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-05-21T21:05:27.683188654Z [err]      self.load_wsgi()
+2026-05-21T21:05:27.683195085Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-05-21T21:05:27.683200760Z [err]      self.wsgi = self.app.wsgi()
+2026-05-21T21:05:27.683205228Z [err]                  ^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.683210839Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-05-21T21:05:27.683215885Z [err]      self.callable = self.load()
+2026-05-21T21:05:27.683220378Z [err]                      ^^^^^^^^^^^
+2026-05-21T21:05:27.683225557Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-05-21T21:05:27.683249662Z [err]  [2026-05-21 21:05:26 +0000] [2] [INFO] Starting gunicorn 23.0.0
+2026-05-21T21:05:27.683253539Z [err]  [2026-05-21 21:05:26 +0000] [2] [INFO] Listening at: http://0.0.0.0:8080 (2)
+2026-05-21T21:05:27.683261340Z [err]  [2026-05-21 21:05:26 +0000] [2] [INFO] Using worker: sync
+2026-05-21T21:05:27.683472625Z [err]    File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-05-21T21:05:27.683479794Z [err]    File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-05-21T21:05:27.683483373Z [err]    File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-05-21T21:05:27.683487073Z [err]    File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-05-21T21:05:27.683488987Z [err]      return util.import_app(self.app_uri)
+2026-05-21T21:05:27.683492286Z [err]    File "/app/run.py", line 4, in <module>
+2026-05-21T21:05:27.683493875Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.683497674Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+2026-05-21T21:05:27.683499378Z [err]      app = create_app()
+2026-05-21T21:05:27.683502000Z [err]      mod = importlib.import_module(module)
+2026-05-21T21:05:27.683504844Z [err]            ^^^^^^^^^^^^
+2026-05-21T21:05:27.683506976Z [err]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.683511131Z [err]    File "/app/app/__init__.py", line 21, in create_app
+2026-05-21T21:05:27.683513187Z [err]    File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-05-21T21:05:27.683516046Z [err]      db.create_all()
+2026-05-21T21:05:27.683520864Z [err]      return _bootstrap._gcd_import(name[level:], package, level)
+2026-05-21T21:05:27.683521678Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+2026-05-21T21:05:27.683526375Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.683529372Z [err]    File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-05-21T21:05:27.683532570Z [err]    File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-05-21T21:05:27.684489365Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.684491385Z [err]      self._call_for_binds(bind_key, "create_all")
+2026-05-21T21:05:27.684495157Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+2026-05-21T21:05:27.684497272Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+2026-05-21T21:05:27.684500426Z [err]      self._dbapi_connection = engine.raw_connection()
+2026-05-21T21:05:27.684503077Z [err]      getattr(metadata, op_name)(bind=engine)
+2026-05-21T21:05:27.684505234Z [err]                               ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.684508056Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/schema.py", line 5931, in create_all
+2026-05-21T21:05:27.684511207Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+2026-05-21T21:05:27.684514274Z [err]      bind._run_ddl_visitor(
+2026-05-21T21:05:27.684517185Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+2026-05-21T21:05:27.684520153Z [err]      with self.begin() as conn:
+2026-05-21T21:05:27.684522857Z [err]    File "/usr/local/lib/python3.11/contextlib.py", line 137, in __enter__
+2026-05-21T21:05:27.684525544Z [err]      return next(self.gen)
+2026-05-21T21:05:27.684528155Z [err]             ^^^^^^^^^^^^^^
+2026-05-21T21:05:27.684530904Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+2026-05-21T21:05:27.684533500Z [err]      with self.connect() as conn:
+2026-05-21T21:05:27.684536140Z [err]           ^^^^^^^^^^^^^^
+2026-05-21T21:05:27.684539711Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+2026-05-21T21:05:27.684542467Z [err]      return self._connection_cls(self)
+2026-05-21T21:05:27.686051246Z [err]      return self._create_connection()
+2026-05-21T21:05:27.686054734Z [err]      return self.pool.connect()
+2026-05-21T21:05:27.686055972Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.686061446Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.686062899Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 389, in _create_connection
+2026-05-21T21:05:27.686066382Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+2026-05-21T21:05:27.686069522Z [err]      return _ConnectionRecord(self)
+2026-05-21T21:05:27.686072109Z [err]      return _ConnectionFairy._checkout(self)
+2026-05-21T21:05:27.686075357Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.686078164Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.686081953Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+2026-05-21T21:05:27.686085025Z [err]      fairy = _ConnectionRecord.checkout(pool)
+2026-05-21T21:05:27.686087757Z [err]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.686090545Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+2026-05-21T21:05:27.686093371Z [err]      rec = pool._do_get()
+2026-05-21T21:05:27.686096423Z [err]            ^^^^^^^^^^^^^^
+2026-05-21T21:05:27.686099309Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+2026-05-21T21:05:27.686102369Z [err]      with util.safe_reraise():
+2026-05-21T21:05:27.686107082Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:27.686109922Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:27.686113111Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+2026-05-21T21:05:27.687388803Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+2026-05-21T21:05:27.687392265Z [err]      self.__connect()
+2026-05-21T21:05:27.687395603Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+2026-05-21T21:05:27.687398972Z [err]      with util.safe_reraise():
+2026-05-21T21:05:27.687402748Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:27.687406666Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:27.687410049Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+2026-05-21T21:05:27.687413396Z [err]      self.dbapi_connection = connection = pool._invoke_creator(self)
+2026-05-21T21:05:27.687416628Z [err]                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.687420097Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+2026-05-21T21:05:27.687423700Z [err]      return dialect.connect(*cargs_tup, **cparams)
+2026-05-21T21:05:27.687427223Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.687430475Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+2026-05-21T21:05:27.687433906Z [err]      return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+2026-05-21T21:05:27.687437674Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.687440732Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 361, in __init__
+2026-05-21T21:05:27.687444100Z [err]      self.connect()
+2026-05-21T21:05:27.687447498Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 669, in connect
+2026-05-21T21:05:27.688644211Z [err]  [2026-05-21 21:05:27 +0000] [2] [ERROR] Reason: Worker failed to boot.
+2026-05-21T21:05:27.688647414Z [err]      self._request_authentication()
+2026-05-21T21:05:27.688651755Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 979, in _request_authentication
+2026-05-21T21:05:27.688655127Z [err]      auth_packet = _auth.caching_sha2_password_auth(self, auth_packet)
+2026-05-21T21:05:27.688658234Z [err]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.688661351Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 267, in caching_sha2_password_auth
+2026-05-21T21:05:27.688664710Z [err]      data = sha2_rsa_encrypt(conn.password, conn.salt, conn.server_public_key)
+2026-05-21T21:05:27.688667519Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:27.688670936Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 144, in sha2_rsa_encrypt
+2026-05-21T21:05:27.688674180Z [err]      raise RuntimeError(
+2026-05-21T21:05:27.688677045Z [err]  RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2026-05-21T21:05:27.688680029Z [err]  [2026-05-21 21:05:27 +0000] [3] [INFO] Worker exiting (pid: 3)
+2026-05-21T21:05:27.688683105Z [err]  [2026-05-21 21:05:27 +0000] [2] [ERROR] Worker (pid:3) exited with code 3
+2026-05-21T21:05:27.688685713Z [err]  [2026-05-21 21:05:27 +0000] [2] [ERROR] Shutting down: Master
+2026-05-21T21:05:27.923860300Z [err]  [2026-05-21 21:05:27 +0000] [2] [INFO] Starting gunicorn 23.0.0
+2026-05-21T21:05:27.923863639Z [err]  [2026-05-21 21:05:27 +0000] [2] [INFO] Listening at: http://0.0.0.0:8080 (2)
+2026-05-21T21:05:27.923866679Z [err]  [2026-05-21 21:05:27 +0000] [2] [INFO] Using worker: sync
+2026-05-21T21:05:27.923869967Z [err]  [2026-05-21 21:05:27 +0000] [3] [INFO] Booting worker with pid: 3
+2026-05-21T21:05:27.962166660Z [inf]  Starting Container
+2026-05-21T21:05:28.118945000Z [err]      mod = importlib.import_module(module)
+2026-05-21T21:05:28.118950887Z [err]      return self.load_wsgiapp()
+2026-05-21T21:05:28.118951279Z [err]  [2026-05-21 21:05:28 +0000] [3] [ERROR] Exception in worker process
+2026-05-21T21:05:28.118952487Z [err]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.118959245Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.118959848Z [err]  Traceback (most recent call last):
+2026-05-21T21:05:28.118964134Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-05-21T21:05:28.118966142Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-05-21T21:05:28.118969847Z [err]      worker.init_process()
+2026-05-21T21:05:28.118973477Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-05-21T21:05:28.118977227Z [err]      return util.import_app(self.app_uri)
+2026-05-21T21:05:28.118979851Z [err]      self.load_wsgi()
+2026-05-21T21:05:28.118984352Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-05-21T21:05:28.118984520Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.118991261Z [err]      self.wsgi = self.app.wsgi()
+2026-05-21T21:05:28.118991964Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+2026-05-21T21:05:28.118995691Z [err]                  ^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.118999113Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-05-21T21:05:28.119002317Z [err]      self.callable = self.load()
+2026-05-21T21:05:28.119005667Z [err]                      ^^^^^^^^^^^
+2026-05-21T21:05:28.119008903Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-05-21T21:05:28.120339627Z [err]    File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-05-21T21:05:28.120348402Z [err]      return _bootstrap._gcd_import(name[level:], package, level)
+2026-05-21T21:05:28.120352376Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.120356577Z [err]    File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-05-21T21:05:28.120360274Z [err]    File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-05-21T21:05:28.120364338Z [err]    File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-05-21T21:05:28.120368128Z [err]    File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-05-21T21:05:28.120371923Z [err]    File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-05-21T21:05:28.120375227Z [err]    File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-05-21T21:05:28.120379284Z [err]    File "/app/run.py", line 4, in <module>
+2026-05-21T21:05:28.120383213Z [err]      app = create_app()
+2026-05-21T21:05:28.120387059Z [err]            ^^^^^^^^^^^^
+2026-05-21T21:05:28.120392645Z [err]    File "/app/app/__init__.py", line 21, in create_app
+2026-05-21T21:05:28.120395788Z [err]      db.create_all()
+2026-05-21T21:05:28.120399084Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+2026-05-21T21:05:28.120402542Z [err]      self._call_for_binds(bind_key, "create_all")
+2026-05-21T21:05:28.120406054Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+2026-05-21T21:05:28.120409638Z [err]      getattr(metadata, op_name)(bind=engine)
+2026-05-21T21:05:28.120413160Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/schema.py", line 5931, in create_all
+2026-05-21T21:05:28.121598549Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.121603476Z [err]      return self.pool.connect()
+2026-05-21T21:05:28.121608150Z [err]           ^^^^^^^^^^^^^^
+2026-05-21T21:05:28.121611251Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.121617112Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+2026-05-21T21:05:28.121618189Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+2026-05-21T21:05:28.121625781Z [err]      return self._connection_cls(self)
+2026-05-21T21:05:28.121625888Z [err]      return _ConnectionFairy._checkout(self)
+2026-05-21T21:05:28.121627865Z [err]      bind._run_ddl_visitor(
+2026-05-21T21:05:28.121632784Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.121635391Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+2026-05-21T21:05:28.121639749Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+2026-05-21T21:05:28.121641276Z [err]      with self.begin() as conn:
+2026-05-21T21:05:28.121646277Z [err]    File "/usr/local/lib/python3.11/contextlib.py", line 137, in __enter__
+2026-05-21T21:05:28.121647789Z [err]      self._dbapi_connection = engine.raw_connection()
+2026-05-21T21:05:28.121651095Z [err]      return next(self.gen)
+2026-05-21T21:05:28.121653746Z [err]                               ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.121656375Z [err]             ^^^^^^^^^^^^^^
+2026-05-21T21:05:28.121660964Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+2026-05-21T21:05:28.121661481Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+2026-05-21T21:05:28.121664866Z [err]      with self.connect() as conn:
+2026-05-21T21:05:28.122939428Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+2026-05-21T21:05:28.122942537Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+2026-05-21T21:05:28.122946417Z [err]      with util.safe_reraise():
+2026-05-21T21:05:28.122950803Z [err]      return self._create_connection()
+2026-05-21T21:05:28.122956099Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+2026-05-21T21:05:28.122958140Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.122961533Z [err]      fairy = _ConnectionRecord.checkout(pool)
+2026-05-21T21:05:28.122966039Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 389, in _create_connection
+2026-05-21T21:05:28.122966889Z [err]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.122972637Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+2026-05-21T21:05:28.122973536Z [err]      return _ConnectionRecord(self)
+2026-05-21T21:05:28.122977713Z [err]      rec = pool._do_get()
+2026-05-21T21:05:28.122981258Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.122983345Z [err]            ^^^^^^^^^^^^^^
+2026-05-21T21:05:28.122988171Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+2026-05-21T21:05:28.122989099Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+2026-05-21T21:05:28.122993105Z [err]      with util.safe_reraise():
+2026-05-21T21:05:28.122996127Z [err]      self.__connect()
+2026-05-21T21:05:28.123000456Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:28.123003522Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:28.124199078Z [err]      auth_packet = _auth.caching_sha2_password_auth(self, auth_packet)
+2026-05-21T21:05:28.124206199Z [err]      self.connect()
+2026-05-21T21:05:28.124207787Z [err]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.124210446Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:28.124215063Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 669, in connect
+2026-05-21T21:05:28.124217878Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:28.124221903Z [err]      self._request_authentication()
+2026-05-21T21:05:28.124223193Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+2026-05-21T21:05:28.124228386Z [err]      self.dbapi_connection = connection = pool._invoke_creator(self)
+2026-05-21T21:05:28.124229755Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 979, in _request_authentication
+2026-05-21T21:05:28.124232807Z [err]                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.124236219Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+2026-05-21T21:05:28.124239639Z [err]      return dialect.connect(*cargs_tup, **cparams)
+2026-05-21T21:05:28.124242759Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.124245853Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+2026-05-21T21:05:28.124250150Z [err]      return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+2026-05-21T21:05:28.124253467Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.124256804Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 361, in __init__
+2026-05-21T21:05:28.125419197Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 267, in caching_sha2_password_auth
+2026-05-21T21:05:28.125426374Z [err]      data = sha2_rsa_encrypt(conn.password, conn.salt, conn.server_public_key)
+2026-05-21T21:05:28.125431663Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:28.125437865Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 144, in sha2_rsa_encrypt
+2026-05-21T21:05:28.125441946Z [err]      raise RuntimeError(
+2026-05-21T21:05:28.125446331Z [err]  RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2026-05-21T21:05:28.125450593Z [err]  [2026-05-21 21:05:28 +0000] [3] [INFO] Worker exiting (pid: 3)
+2026-05-21T21:05:28.194596064Z [err]  [2026-05-21 21:05:28 +0000] [2] [ERROR] Worker (pid:3) exited with code 3
+2026-05-21T21:05:28.194599353Z [err]  [2026-05-21 21:05:28 +0000] [2] [ERROR] Shutting down: Master
+2026-05-21T21:05:28.194602262Z [err]  [2026-05-21 21:05:28 +0000] [2] [ERROR] Reason: Worker failed to boot.
+2026-05-21T21:05:28.824482329Z [err]  [2026-05-21 21:05:28 +0000] [2] [INFO] Starting gunicorn 23.0.0
+2026-05-21T21:05:28.824488523Z [err]  [2026-05-21 21:05:28 +0000] [2] [INFO] Listening at: http://0.0.0.0:8080 (2)
+2026-05-21T21:05:28.824504636Z [err]  [2026-05-21 21:05:28 +0000] [2] [INFO] Using worker: sync
+2026-05-21T21:05:28.824509204Z [err]  [2026-05-21 21:05:28 +0000] [3] [INFO] Booting worker with pid: 3
+2026-05-21T21:05:29.046553607Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.046560822Z [err]  [2026-05-21 21:05:29 +0000] [3] [ERROR] Exception in worker process
+2026-05-21T21:05:29.046560857Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+2026-05-21T21:05:29.046565985Z [err]      mod = importlib.import_module(module)
+2026-05-21T21:05:29.046568012Z [err]  Traceback (most recent call last):
+2026-05-21T21:05:29.046571924Z [err]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.046573605Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-05-21T21:05:29.046576622Z [err]      worker.init_process()
+2026-05-21T21:05:29.046579279Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-05-21T21:05:29.046582257Z [err]      self.load_wsgi()
+2026-05-21T21:05:29.046584987Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-05-21T21:05:29.046587800Z [err]      self.wsgi = self.app.wsgi()
+2026-05-21T21:05:29.046590477Z [err]                  ^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.046593617Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-05-21T21:05:29.046597113Z [err]      self.callable = self.load()
+2026-05-21T21:05:29.046600039Z [err]                      ^^^^^^^^^^^
+2026-05-21T21:05:29.046603303Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-05-21T21:05:29.046606057Z [err]      return self.load_wsgiapp()
+2026-05-21T21:05:29.046608745Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.046611520Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-05-21T21:05:29.046614286Z [err]      return util.import_app(self.app_uri)
+2026-05-21T21:05:29.047848366Z [err]    File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-05-21T21:05:29.047849963Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+2026-05-21T21:05:29.047854680Z [err]      return _bootstrap._gcd_import(name[level:], package, level)
+2026-05-21T21:05:29.047857047Z [err]      self._call_for_binds(bind_key, "create_all")
+2026-05-21T21:05:29.047859937Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.047863499Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+2026-05-21T21:05:29.047866380Z [err]    File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-05-21T21:05:29.047870374Z [err]      getattr(metadata, op_name)(bind=engine)
+2026-05-21T21:05:29.047871848Z [err]    File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-05-21T21:05:29.047875540Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/schema.py", line 5931, in create_all
+2026-05-21T21:05:29.047877394Z [err]    File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-05-21T21:05:29.047880258Z [err]    File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-05-21T21:05:29.047883215Z [err]    File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-05-21T21:05:29.047886378Z [err]    File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-05-21T21:05:29.047889203Z [err]    File "/app/run.py", line 4, in <module>
+2026-05-21T21:05:29.047891782Z [err]      app = create_app()
+2026-05-21T21:05:29.047894541Z [err]            ^^^^^^^^^^^^
+2026-05-21T21:05:29.047897137Z [err]    File "/app/app/__init__.py", line 21, in create_app
+2026-05-21T21:05:29.047899978Z [err]      db.create_all()
+2026-05-21T21:05:29.049367095Z [err]      bind._run_ddl_visitor(
+2026-05-21T21:05:29.049367859Z [err]      return self.pool.connect()
+2026-05-21T21:05:29.049373225Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+2026-05-21T21:05:29.049377788Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.049379439Z [err]      with self.begin() as conn:
+2026-05-21T21:05:29.049384123Z [err]    File "/usr/local/lib/python3.11/contextlib.py", line 137, in __enter__
+2026-05-21T21:05:29.049387234Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+2026-05-21T21:05:29.049389234Z [err]      return next(self.gen)
+2026-05-21T21:05:29.049393401Z [err]      return _ConnectionFairy._checkout(self)
+2026-05-21T21:05:29.049394229Z [err]             ^^^^^^^^^^^^^^
+2026-05-21T21:05:29.049399252Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+2026-05-21T21:05:29.049401475Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.049404034Z [err]      with self.connect() as conn:
+2026-05-21T21:05:29.049407190Z [err]           ^^^^^^^^^^^^^^
+2026-05-21T21:05:29.049410149Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+2026-05-21T21:05:29.049413810Z [err]      return self._connection_cls(self)
+2026-05-21T21:05:29.049417197Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.049419788Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+2026-05-21T21:05:29.049422526Z [err]      self._dbapi_connection = engine.raw_connection()
+2026-05-21T21:05:29.049425137Z [err]                               ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.049429119Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+2026-05-21T21:05:29.051081040Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+2026-05-21T21:05:29.051082156Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+2026-05-21T21:05:29.051086379Z [err]      fairy = _ConnectionRecord.checkout(pool)
+2026-05-21T21:05:29.051090611Z [err]      self.__connect()
+2026-05-21T21:05:29.051092289Z [err]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.051096815Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+2026-05-21T21:05:29.051097974Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+2026-05-21T21:05:29.051102691Z [err]      with util.safe_reraise():
+2026-05-21T21:05:29.051103523Z [err]      rec = pool._do_get()
+2026-05-21T21:05:29.051106792Z [err]            ^^^^^^^^^^^^^^
+2026-05-21T21:05:29.051109666Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+2026-05-21T21:05:29.051113272Z [err]      with util.safe_reraise():
+2026-05-21T21:05:29.051117177Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:29.051121824Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:29.051125736Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+2026-05-21T21:05:29.051129669Z [err]      return self._create_connection()
+2026-05-21T21:05:29.051132789Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.051135795Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 389, in _create_connection
+2026-05-21T21:05:29.051138673Z [err]      return _ConnectionRecord(self)
+2026-05-21T21:05:29.051142933Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.052625144Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:29.052634786Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:29.052639583Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+2026-05-21T21:05:29.052645240Z [err]      self.dbapi_connection = connection = pool._invoke_creator(self)
+2026-05-21T21:05:29.052650490Z [err]                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.052655117Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+2026-05-21T21:05:29.052660144Z [err]      return dialect.connect(*cargs_tup, **cparams)
+2026-05-21T21:05:29.052664815Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.052669569Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+2026-05-21T21:05:29.052673796Z [err]      return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+2026-05-21T21:05:29.052678407Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.052683290Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 361, in __init__
+2026-05-21T21:05:29.052688984Z [err]      self.connect()
+2026-05-21T21:05:29.052694396Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 669, in connect
+2026-05-21T21:05:29.052698660Z [err]      self._request_authentication()
+2026-05-21T21:05:29.052703282Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 979, in _request_authentication
+2026-05-21T21:05:29.052707424Z [err]      auth_packet = _auth.caching_sha2_password_auth(self, auth_packet)
+2026-05-21T21:05:29.052711489Z [err]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.053874974Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 267, in caching_sha2_password_auth
+2026-05-21T21:05:29.053879382Z [err]      data = sha2_rsa_encrypt(conn.password, conn.salt, conn.server_public_key)
+2026-05-21T21:05:29.053883620Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.053889076Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 144, in sha2_rsa_encrypt
+2026-05-21T21:05:29.053893505Z [err]      raise RuntimeError(
+2026-05-21T21:05:29.053897613Z [err]  RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2026-05-21T21:05:29.053901736Z [err]  [2026-05-21 21:05:29 +0000] [3] [INFO] Worker exiting (pid: 3)
+2026-05-21T21:05:29.116902750Z [err]  [2026-05-21 21:05:29 +0000] [2] [ERROR] Worker (pid:3) exited with code 3
+2026-05-21T21:05:29.116906623Z [err]  [2026-05-21 21:05:29 +0000] [2] [ERROR] Shutting down: Master
+2026-05-21T21:05:29.116909840Z [err]  [2026-05-21 21:05:29 +0000] [2] [ERROR] Reason: Worker failed to boot.
+2026-05-21T21:05:29.691603210Z [err]  [2026-05-21 21:05:29 +0000] [2] [INFO] Starting gunicorn 23.0.0
+2026-05-21T21:05:29.691615070Z [err]  [2026-05-21 21:05:29 +0000] [2] [INFO] Listening at: http://0.0.0.0:8080 (2)
+2026-05-21T21:05:29.691620807Z [err]  [2026-05-21 21:05:29 +0000] [2] [INFO] Using worker: sync
+2026-05-21T21:05:29.693851103Z [err]  [2026-05-21 21:05:29 +0000] [3] [INFO] Booting worker with pid: 3
+2026-05-21T21:05:29.925505277Z [err]  [2026-05-21 21:05:29 +0000] [3] [ERROR] Exception in worker process
+2026-05-21T21:05:29.925517536Z [err]  Traceback (most recent call last):
+2026-05-21T21:05:29.925524925Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-05-21T21:05:29.925533885Z [err]      worker.init_process()
+2026-05-21T21:05:29.925542250Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-05-21T21:05:29.925546931Z [err]      self.load_wsgi()
+2026-05-21T21:05:29.925551090Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-05-21T21:05:29.925555771Z [err]      self.wsgi = self.app.wsgi()
+2026-05-21T21:05:29.925561134Z [err]                  ^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.925565264Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-05-21T21:05:29.925569727Z [err]      self.callable = self.load()
+2026-05-21T21:05:29.925575138Z [err]                      ^^^^^^^^^^^
+2026-05-21T21:05:29.925580438Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-05-21T21:05:29.925585022Z [err]      return self.load_wsgiapp()
+2026-05-21T21:05:29.925589241Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.925593259Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-05-21T21:05:29.925597514Z [err]      return util.import_app(self.app_uri)
+2026-05-21T21:05:29.925601700Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.925606587Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+2026-05-21T21:05:29.925610857Z [err]      mod = importlib.import_module(module)
+2026-05-21T21:05:29.925615941Z [err]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.927225075Z [err]      db.create_all()
+2026-05-21T21:05:29.927232659Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+2026-05-21T21:05:29.927234465Z [err]    File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-05-21T21:05:29.927238512Z [err]      self._call_for_binds(bind_key, "create_all")
+2026-05-21T21:05:29.927244277Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+2026-05-21T21:05:29.927245064Z [err]      return _bootstrap._gcd_import(name[level:], package, level)
+2026-05-21T21:05:29.927249005Z [err]      getattr(metadata, op_name)(bind=engine)
+2026-05-21T21:05:29.927252886Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.927254686Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/schema.py", line 5931, in create_all
+2026-05-21T21:05:29.927259222Z [err]    File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-05-21T21:05:29.927263776Z [err]    File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-05-21T21:05:29.927268363Z [err]    File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-05-21T21:05:29.927272708Z [err]    File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-05-21T21:05:29.927277967Z [err]    File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-05-21T21:05:29.927282187Z [err]    File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-05-21T21:05:29.927286669Z [err]    File "/app/run.py", line 4, in <module>
+2026-05-21T21:05:29.927291235Z [err]      app = create_app()
+2026-05-21T21:05:29.927295009Z [err]            ^^^^^^^^^^^^
+2026-05-21T21:05:29.927300231Z [err]    File "/app/app/__init__.py", line 21, in create_app
+2026-05-21T21:05:29.928641376Z [err]      bind._run_ddl_visitor(
+2026-05-21T21:05:29.928644731Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+2026-05-21T21:05:29.928647933Z [err]      with self.begin() as conn:
+2026-05-21T21:05:29.928651411Z [err]    File "/usr/local/lib/python3.11/contextlib.py", line 137, in __enter__
+2026-05-21T21:05:29.928654909Z [err]      return next(self.gen)
+2026-05-21T21:05:29.928658881Z [err]             ^^^^^^^^^^^^^^
+2026-05-21T21:05:29.928661963Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+2026-05-21T21:05:29.928665080Z [err]      with self.connect() as conn:
+2026-05-21T21:05:29.928667994Z [err]           ^^^^^^^^^^^^^^
+2026-05-21T21:05:29.928671099Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+2026-05-21T21:05:29.928674085Z [err]      return self._connection_cls(self)
+2026-05-21T21:05:29.928676933Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.928680137Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+2026-05-21T21:05:29.928683020Z [err]      self._dbapi_connection = engine.raw_connection()
+2026-05-21T21:05:29.928685946Z [err]                               ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.928689408Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+2026-05-21T21:05:29.928692320Z [err]      return self.pool.connect()
+2026-05-21T21:05:29.928695649Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.928698713Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+2026-05-21T21:05:29.928701857Z [err]      return _ConnectionFairy._checkout(self)
+2026-05-21T21:05:29.928704855Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.930034944Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+2026-05-21T21:05:29.930038992Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+2026-05-21T21:05:29.930041335Z [err]      fairy = _ConnectionRecord.checkout(pool)
+2026-05-21T21:05:29.930044484Z [err]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.930050598Z [err]      return self._create_connection()
+2026-05-21T21:05:29.930051587Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+2026-05-21T21:05:29.930058930Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.930059024Z [err]      rec = pool._do_get()
+2026-05-21T21:05:29.930066207Z [err]            ^^^^^^^^^^^^^^
+2026-05-21T21:05:29.930067773Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 389, in _create_connection
+2026-05-21T21:05:29.930072019Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+2026-05-21T21:05:29.930076523Z [err]      with util.safe_reraise():
+2026-05-21T21:05:29.930077796Z [err]      return _ConnectionRecord(self)
+2026-05-21T21:05:29.930082049Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:29.930085208Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.930088299Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:29.930091808Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+2026-05-21T21:05:29.930097038Z [err]      self.__connect()
+2026-05-21T21:05:29.930102521Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+2026-05-21T21:05:29.930107143Z [err]      with util.safe_reraise():
+2026-05-21T21:05:29.931428435Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:29.931434790Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:29.931438615Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+2026-05-21T21:05:29.931442293Z [err]      self.dbapi_connection = connection = pool._invoke_creator(self)
+2026-05-21T21:05:29.931445623Z [err]                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.931450430Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+2026-05-21T21:05:29.931453900Z [err]      return dialect.connect(*cargs_tup, **cparams)
+2026-05-21T21:05:29.931457051Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.931460646Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+2026-05-21T21:05:29.931464419Z [err]      return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+2026-05-21T21:05:29.931467679Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.931472532Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 361, in __init__
+2026-05-21T21:05:29.931476188Z [err]      self.connect()
+2026-05-21T21:05:29.931479728Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 669, in connect
+2026-05-21T21:05:29.931483575Z [err]      self._request_authentication()
+2026-05-21T21:05:29.931486928Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 979, in _request_authentication
+2026-05-21T21:05:29.931490401Z [err]      auth_packet = _auth.caching_sha2_password_auth(self, auth_packet)
+2026-05-21T21:05:29.931493739Z [err]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.932678202Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 267, in caching_sha2_password_auth
+2026-05-21T21:05:29.932681705Z [err]      data = sha2_rsa_encrypt(conn.password, conn.salt, conn.server_public_key)
+2026-05-21T21:05:29.932684712Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:29.932687555Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 144, in sha2_rsa_encrypt
+2026-05-21T21:05:29.932690464Z [err]      raise RuntimeError(
+2026-05-21T21:05:29.932693587Z [err]  RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2026-05-21T21:05:29.932696623Z [err]  [2026-05-21 21:05:29 +0000] [3] [INFO] Worker exiting (pid: 3)
+2026-05-21T21:05:30.012550228Z [err]  [2026-05-21 21:05:29 +0000] [2] [ERROR] Worker (pid:3) exited with code 3
+2026-05-21T21:05:30.012553584Z [err]  [2026-05-21 21:05:29 +0000] [2] [ERROR] Shutting down: Master
+2026-05-21T21:05:30.012556354Z [err]  [2026-05-21 21:05:29 +0000] [2] [ERROR] Reason: Worker failed to boot.
+2026-05-21T21:05:30.676648826Z [err]  [2026-05-21 21:05:30 +0000] [2] [INFO] Listening at: http://0.0.0.0:8080 (2)
+2026-05-21T21:05:30.676655489Z [err]  [2026-05-21 21:05:30 +0000] [2] [INFO] Using worker: sync
+2026-05-21T21:05:30.676659202Z [err]  [2026-05-21 21:05:30 +0000] [3] [INFO] Booting worker with pid: 3
+2026-05-21T21:05:30.676881620Z [err]  [2026-05-21 21:05:30 +0000] [2] [INFO] Starting gunicorn 23.0.0
+2026-05-21T21:05:30.886403612Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-05-21T21:05:30.886411751Z [err]      return self.load_wsgiapp()
+2026-05-21T21:05:30.886411846Z [err]  [2026-05-21 21:05:30 +0000] [3] [ERROR] Exception in worker process
+2026-05-21T21:05:30.886417300Z [err]  Traceback (most recent call last):
+2026-05-21T21:05:30.886417691Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.886422743Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-05-21T21:05:30.886423463Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-05-21T21:05:30.886428960Z [err]      worker.init_process()
+2026-05-21T21:05:30.886430845Z [err]      return util.import_app(self.app_uri)
+2026-05-21T21:05:30.886434211Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-05-21T21:05:30.886438115Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.886439515Z [err]      self.load_wsgi()
+2026-05-21T21:05:30.886444707Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-05-21T21:05:30.886446895Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+2026-05-21T21:05:30.886449545Z [err]      self.wsgi = self.app.wsgi()
+2026-05-21T21:05:30.886452586Z [err]                  ^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.886456645Z [err]      mod = importlib.import_module(module)
+2026-05-21T21:05:30.886458162Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-05-21T21:05:30.886463261Z [err]      self.callable = self.load()
+2026-05-21T21:05:30.886463806Z [err]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.886467077Z [err]                      ^^^^^^^^^^^
+2026-05-21T21:05:30.887512085Z [err]      getattr(metadata, op_name)(bind=engine)
+2026-05-21T21:05:30.887517782Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/schema.py", line 5931, in create_all
+2026-05-21T21:05:30.887522617Z [err]    File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-05-21T21:05:30.887525048Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+2026-05-21T21:05:30.887530079Z [err]      return _bootstrap._gcd_import(name[level:], package, level)
+2026-05-21T21:05:30.887533213Z [err]      self._call_for_binds(bind_key, "create_all")
+2026-05-21T21:05:30.887538396Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.887539203Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+2026-05-21T21:05:30.887543128Z [err]    File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-05-21T21:05:30.887546195Z [err]    File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-05-21T21:05:30.887552847Z [err]    File "/app/run.py", line 4, in <module>
+2026-05-21T21:05:30.887553871Z [err]    File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-05-21T21:05:30.887559886Z [err]      app = create_app()
+2026-05-21T21:05:30.887561413Z [err]    File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-05-21T21:05:30.887565074Z [err]            ^^^^^^^^^^^^
+2026-05-21T21:05:30.887567906Z [err]    File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-05-21T21:05:30.887571643Z [err]    File "/app/app/__init__.py", line 21, in create_app
+2026-05-21T21:05:30.887574831Z [err]    File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-05-21T21:05:30.887577620Z [err]      db.create_all()
+2026-05-21T21:05:30.888633373Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.888638318Z [err]      bind._run_ddl_visitor(
+2026-05-21T21:05:30.888640529Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+2026-05-21T21:05:30.888646303Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+2026-05-21T21:05:30.888648884Z [err]      return _ConnectionFairy._checkout(self)
+2026-05-21T21:05:30.888651350Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+2026-05-21T21:05:30.888652065Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.888654824Z [err]      return self.pool.connect()
+2026-05-21T21:05:30.888657270Z [err]      with self.begin() as conn:
+2026-05-21T21:05:30.888663358Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.888663428Z [err]    File "/usr/local/lib/python3.11/contextlib.py", line 137, in __enter__
+2026-05-21T21:05:30.888664866Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+2026-05-21T21:05:30.888669509Z [err]      return next(self.gen)
+2026-05-21T21:05:30.888671328Z [err]      self._dbapi_connection = engine.raw_connection()
+2026-05-21T21:05:30.888674419Z [err]             ^^^^^^^^^^^^^^
+2026-05-21T21:05:30.888676154Z [err]                               ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.888678919Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+2026-05-21T21:05:30.888682826Z [err]      with self.connect() as conn:
+2026-05-21T21:05:30.888689198Z [err]           ^^^^^^^^^^^^^^
+2026-05-21T21:05:30.888692590Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+2026-05-21T21:05:30.888696094Z [err]      return self._connection_cls(self)
+2026-05-21T21:05:30.889738316Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+2026-05-21T21:05:30.889741787Z [err]      fairy = _ConnectionRecord.checkout(pool)
+2026-05-21T21:05:30.889745121Z [err]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.889748737Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+2026-05-21T21:05:30.889752102Z [err]      rec = pool._do_get()
+2026-05-21T21:05:30.889755751Z [err]            ^^^^^^^^^^^^^^
+2026-05-21T21:05:30.889762736Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+2026-05-21T21:05:30.889766190Z [err]      with util.safe_reraise():
+2026-05-21T21:05:30.889769718Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:30.889772645Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:30.889775870Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+2026-05-21T21:05:30.889779907Z [err]      return self._create_connection()
+2026-05-21T21:05:30.889783204Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.889786259Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 389, in _create_connection
+2026-05-21T21:05:30.889789794Z [err]      return _ConnectionRecord(self)
+2026-05-21T21:05:30.889793070Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.889798113Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+2026-05-21T21:05:30.889801362Z [err]      self.__connect()
+2026-05-21T21:05:30.889804954Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+2026-05-21T21:05:30.889808224Z [err]      with util.safe_reraise():
+2026-05-21T21:05:30.890700425Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:30.890708650Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:30.890712703Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+2026-05-21T21:05:30.890716028Z [err]      self.dbapi_connection = connection = pool._invoke_creator(self)
+2026-05-21T21:05:30.890719345Z [err]                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.890723046Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+2026-05-21T21:05:30.890726697Z [err]      return dialect.connect(*cargs_tup, **cparams)
+2026-05-21T21:05:30.890730031Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.890733408Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+2026-05-21T21:05:30.890736991Z [err]      return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+2026-05-21T21:05:30.890740380Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.890743984Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 361, in __init__
+2026-05-21T21:05:30.890747563Z [err]      self.connect()
+2026-05-21T21:05:30.890751234Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 669, in connect
+2026-05-21T21:05:30.890754506Z [err]      self._request_authentication()
+2026-05-21T21:05:30.890757755Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 979, in _request_authentication
+2026-05-21T21:05:30.890763373Z [err]      auth_packet = _auth.caching_sha2_password_auth(self, auth_packet)
+2026-05-21T21:05:30.890767187Z [err]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.891657653Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 267, in caching_sha2_password_auth
+2026-05-21T21:05:30.891661515Z [err]      data = sha2_rsa_encrypt(conn.password, conn.salt, conn.server_public_key)
+2026-05-21T21:05:30.891664570Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:30.891667342Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 144, in sha2_rsa_encrypt
+2026-05-21T21:05:30.891670373Z [err]      raise RuntimeError(
+2026-05-21T21:05:30.891673697Z [err]  RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2026-05-21T21:05:30.891676746Z [err]  [2026-05-21 21:05:30 +0000] [3] [INFO] Worker exiting (pid: 3)
+2026-05-21T21:05:30.971588666Z [err]  [2026-05-21 21:05:30 +0000] [2] [ERROR] Worker (pid:3) exited with code 3
+2026-05-21T21:05:30.971594043Z [err]  [2026-05-21 21:05:30 +0000] [2] [ERROR] Shutting down: Master
+2026-05-21T21:05:30.971598483Z [err]  [2026-05-21 21:05:30 +0000] [2] [ERROR] Reason: Worker failed to boot.
+2026-05-21T21:05:31.686171609Z [err]  [2026-05-21 21:05:31 +0000] [2] [INFO] Starting gunicorn 23.0.0
+2026-05-21T21:05:31.686174971Z [err]  [2026-05-21 21:05:31 +0000] [2] [INFO] Listening at: http://0.0.0.0:8080 (2)
+2026-05-21T21:05:31.686178458Z [err]  [2026-05-21 21:05:31 +0000] [2] [INFO] Using worker: sync
+2026-05-21T21:05:31.686181635Z [err]  [2026-05-21 21:05:31 +0000] [3] [INFO] Booting worker with pid: 3
+2026-05-21T21:05:31.806808117Z [err]      self.callable = self.load()
+2026-05-21T21:05:31.806814673Z [err]                      ^^^^^^^^^^^
+2026-05-21T21:05:31.806818553Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-05-21T21:05:31.806822816Z [err]      return self.load_wsgiapp()
+2026-05-21T21:05:31.806826404Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.806831677Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-05-21T21:05:31.806831739Z [err]  [2026-05-21 21:05:31 +0000] [3] [ERROR] Exception in worker process
+2026-05-21T21:05:31.806836913Z [err]  Traceback (most recent call last):
+2026-05-21T21:05:31.806837180Z [err]      return util.import_app(self.app_uri)
+2026-05-21T21:05:31.806841756Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-05-21T21:05:31.806843665Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.806847946Z [err]      worker.init_process()
+2026-05-21T21:05:31.806849358Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+2026-05-21T21:05:31.806852123Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-05-21T21:05:31.806855393Z [err]      mod = importlib.import_module(module)
+2026-05-21T21:05:31.806856811Z [err]      self.load_wsgi()
+2026-05-21T21:05:31.806860314Z [err]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.806861840Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-05-21T21:05:31.806864808Z [err]      self.wsgi = self.app.wsgi()
+2026-05-21T21:05:31.806868232Z [err]                  ^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.806870992Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-05-21T21:05:31.808180504Z [err]    File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-05-21T21:05:31.808184512Z [err]      return _bootstrap._gcd_import(name[level:], package, level)
+2026-05-21T21:05:31.808188609Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.808192054Z [err]    File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-05-21T21:05:31.808195878Z [err]    File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-05-21T21:05:31.808200141Z [err]    File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-05-21T21:05:31.808203790Z [err]    File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-05-21T21:05:31.808207572Z [err]    File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-05-21T21:05:31.808210518Z [err]    File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-05-21T21:05:31.808213384Z [err]    File "/app/run.py", line 4, in <module>
+2026-05-21T21:05:31.808216047Z [err]      app = create_app()
+2026-05-21T21:05:31.808218724Z [err]            ^^^^^^^^^^^^
+2026-05-21T21:05:31.808221343Z [err]    File "/app/app/__init__.py", line 21, in create_app
+2026-05-21T21:05:31.808223950Z [err]      db.create_all()
+2026-05-21T21:05:31.808227227Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+2026-05-21T21:05:31.808230866Z [err]      self._call_for_binds(bind_key, "create_all")
+2026-05-21T21:05:31.808233963Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+2026-05-21T21:05:31.808236658Z [err]      getattr(metadata, op_name)(bind=engine)
+2026-05-21T21:05:31.808239481Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/schema.py", line 5931, in create_all
+2026-05-21T21:05:31.809749512Z [err]                               ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.809754215Z [err]      bind._run_ddl_visitor(
+2026-05-21T21:05:31.809755723Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+2026-05-21T21:05:31.809761286Z [err]      return self.pool.connect()
+2026-05-21T21:05:31.809762172Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+2026-05-21T21:05:31.809766178Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.809768527Z [err]      with self.begin() as conn:
+2026-05-21T21:05:31.809771187Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+2026-05-21T21:05:31.809775722Z [err]    File "/usr/local/lib/python3.11/contextlib.py", line 137, in __enter__
+2026-05-21T21:05:31.809775787Z [err]      return _ConnectionFairy._checkout(self)
+2026-05-21T21:05:31.809781118Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.809781196Z [err]      return next(self.gen)
+2026-05-21T21:05:31.809785634Z [err]             ^^^^^^^^^^^^^^
+2026-05-21T21:05:31.809789628Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+2026-05-21T21:05:31.809793468Z [err]      with self.connect() as conn:
+2026-05-21T21:05:31.809796488Z [err]           ^^^^^^^^^^^^^^
+2026-05-21T21:05:31.809799428Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+2026-05-21T21:05:31.809803038Z [err]      return self._connection_cls(self)
+2026-05-21T21:05:31.809806899Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.809810830Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+2026-05-21T21:05:31.809814825Z [err]      self._dbapi_connection = engine.raw_connection()
+2026-05-21T21:05:31.811146949Z [err]      return _ConnectionRecord(self)
+2026-05-21T21:05:31.811151149Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.811154625Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+2026-05-21T21:05:31.811159220Z [err]      self.__connect()
+2026-05-21T21:05:31.811159508Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+2026-05-21T21:05:31.811165181Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+2026-05-21T21:05:31.811165523Z [err]      fairy = _ConnectionRecord.checkout(pool)
+2026-05-21T21:05:31.811170449Z [err]      with util.safe_reraise():
+2026-05-21T21:05:31.811172093Z [err]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.811175168Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+2026-05-21T21:05:31.811177953Z [err]      rec = pool._do_get()
+2026-05-21T21:05:31.811180893Z [err]            ^^^^^^^^^^^^^^
+2026-05-21T21:05:31.811183553Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+2026-05-21T21:05:31.811186096Z [err]      with util.safe_reraise():
+2026-05-21T21:05:31.811189694Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:31.811192616Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:31.811195358Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+2026-05-21T21:05:31.811198661Z [err]      return self._create_connection()
+2026-05-21T21:05:31.811201671Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.811206079Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 389, in _create_connection
+2026-05-21T21:05:31.812586179Z [err]      auth_packet = _auth.caching_sha2_password_auth(self, auth_packet)
+2026-05-21T21:05:31.812589835Z [err]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.812599287Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:31.812603175Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:31.812606214Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+2026-05-21T21:05:31.812608782Z [err]      self.dbapi_connection = connection = pool._invoke_creator(self)
+2026-05-21T21:05:31.812611731Z [err]                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.812614928Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+2026-05-21T21:05:31.812617716Z [err]      return dialect.connect(*cargs_tup, **cparams)
+2026-05-21T21:05:31.812621025Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.812623917Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+2026-05-21T21:05:31.812626648Z [err]      return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+2026-05-21T21:05:31.812629733Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.812632708Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 361, in __init__
+2026-05-21T21:05:31.812635468Z [err]      self.connect()
+2026-05-21T21:05:31.812638186Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 669, in connect
+2026-05-21T21:05:31.812641821Z [err]      self._request_authentication()
+2026-05-21T21:05:31.812645632Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 979, in _request_authentication
+2026-05-21T21:05:31.813894097Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 267, in caching_sha2_password_auth
+2026-05-21T21:05:31.813897834Z [err]      data = sha2_rsa_encrypt(conn.password, conn.salt, conn.server_public_key)
+2026-05-21T21:05:31.813900912Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:31.813903838Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 144, in sha2_rsa_encrypt
+2026-05-21T21:05:31.813906577Z [err]      raise RuntimeError(
+2026-05-21T21:05:31.813909227Z [err]  RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2026-05-21T21:05:31.813911847Z [err]  [2026-05-21 21:05:31 +0000] [3] [INFO] Worker exiting (pid: 3)
+2026-05-21T21:05:31.883041257Z [err]  [2026-05-21 21:05:31 +0000] [2] [ERROR] Worker (pid:3) exited with code 3
+2026-05-21T21:05:31.883044230Z [err]  [2026-05-21 21:05:31 +0000] [2] [ERROR] Shutting down: Master
+2026-05-21T21:05:31.883047179Z [err]  [2026-05-21 21:05:31 +0000] [2] [ERROR] Reason: Worker failed to boot.
+2026-05-21T21:05:32.411494177Z [err]  [2026-05-21 21:05:32 +0000] [2] [INFO] Starting gunicorn 23.0.0
+2026-05-21T21:05:32.411501140Z [err]  [2026-05-21 21:05:32 +0000] [2] [INFO] Listening at: http://0.0.0.0:8080 (2)
+2026-05-21T21:05:32.411506191Z [err]  [2026-05-21 21:05:32 +0000] [2] [INFO] Using worker: sync
+2026-05-21T21:05:32.413251915Z [err]  [2026-05-21 21:05:32 +0000] [3] [INFO] Booting worker with pid: 3
+2026-05-21T21:05:32.686253406Z [err]      self.wsgi = self.app.wsgi()
+2026-05-21T21:05:32.686262996Z [err]                  ^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.686267171Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-05-21T21:05:32.686271635Z [err]      self.callable = self.load()
+2026-05-21T21:05:32.686275068Z [err]                      ^^^^^^^^^^^
+2026-05-21T21:05:32.686279152Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-05-21T21:05:32.686287349Z [err]      return self.load_wsgiapp()
+2026-05-21T21:05:32.686291088Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.686294463Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-05-21T21:05:32.686297645Z [err]      return util.import_app(self.app_uri)
+2026-05-21T21:05:32.686300978Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.686304207Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+2026-05-21T21:05:32.686307996Z [err]      mod = importlib.import_module(module)
+2026-05-21T21:05:32.686311509Z [err]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.686405904Z [err]  [2026-05-21 21:05:32 +0000] [3] [ERROR] Exception in worker process
+2026-05-21T21:05:32.686410339Z [err]  Traceback (most recent call last):
+2026-05-21T21:05:32.686415012Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-05-21T21:05:32.686419709Z [err]      worker.init_process()
+2026-05-21T21:05:32.686424009Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-05-21T21:05:32.686428500Z [err]      self.load_wsgi()
+2026-05-21T21:05:32.686432731Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-05-21T21:05:32.687494380Z [err]      return _bootstrap._gcd_import(name[level:], package, level)
+2026-05-21T21:05:32.687499252Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.687504018Z [err]    File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-05-21T21:05:32.687504876Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/schema.py", line 5931, in create_all
+2026-05-21T21:05:32.687508361Z [err]    File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-05-21T21:05:32.687511767Z [err]    File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-05-21T21:05:32.687515094Z [err]    File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-05-21T21:05:32.687518588Z [err]    File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-05-21T21:05:32.687522415Z [err]    File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-05-21T21:05:32.687525347Z [err]      db.create_all()
+2026-05-21T21:05:32.687528277Z [err]    File "/app/run.py", line 4, in <module>
+2026-05-21T21:05:32.687532170Z [err]      app = create_app()
+2026-05-21T21:05:32.687536924Z [err]            ^^^^^^^^^^^^
+2026-05-21T21:05:32.687537165Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+2026-05-21T21:05:32.687541344Z [err]    File "/app/app/__init__.py", line 21, in create_app
+2026-05-21T21:05:32.687543216Z [err]      self._call_for_binds(bind_key, "create_all")
+2026-05-21T21:05:32.687547179Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+2026-05-21T21:05:32.687551245Z [err]      getattr(metadata, op_name)(bind=engine)
+2026-05-21T21:05:32.687558804Z [err]    File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-05-21T21:05:32.688746060Z [err]      self._dbapi_connection = engine.raw_connection()
+2026-05-21T21:05:32.688750138Z [err]                               ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.688754025Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+2026-05-21T21:05:32.688759577Z [err]      bind._run_ddl_visitor(
+2026-05-21T21:05:32.688759603Z [err]      return self.pool.connect()
+2026-05-21T21:05:32.688765750Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.688767294Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+2026-05-21T21:05:32.688770509Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+2026-05-21T21:05:32.688774761Z [err]      with self.begin() as conn:
+2026-05-21T21:05:32.688775583Z [err]      return _ConnectionFairy._checkout(self)
+2026-05-21T21:05:32.688781642Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.688782480Z [err]    File "/usr/local/lib/python3.11/contextlib.py", line 137, in __enter__
+2026-05-21T21:05:32.688786803Z [err]      return next(self.gen)
+2026-05-21T21:05:32.688790510Z [err]             ^^^^^^^^^^^^^^
+2026-05-21T21:05:32.688794753Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+2026-05-21T21:05:32.688798583Z [err]      with self.connect() as conn:
+2026-05-21T21:05:32.688802422Z [err]           ^^^^^^^^^^^^^^
+2026-05-21T21:05:32.688806104Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+2026-05-21T21:05:32.688809806Z [err]      return self._connection_cls(self)
+2026-05-21T21:05:32.688813556Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.688818078Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+2026-05-21T21:05:32.690235802Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+2026-05-21T21:05:32.690239131Z [err]      fairy = _ConnectionRecord.checkout(pool)
+2026-05-21T21:05:32.690242811Z [err]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.690246244Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+2026-05-21T21:05:32.690250027Z [err]      rec = pool._do_get()
+2026-05-21T21:05:32.690253601Z [err]            ^^^^^^^^^^^^^^
+2026-05-21T21:05:32.690257194Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+2026-05-21T21:05:32.690260854Z [err]      with util.safe_reraise():
+2026-05-21T21:05:32.690264670Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:32.690268549Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:32.690272441Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+2026-05-21T21:05:32.690276008Z [err]      return self._create_connection()
+2026-05-21T21:05:32.690279202Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.690282860Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 389, in _create_connection
+2026-05-21T21:05:32.690286854Z [err]      return _ConnectionRecord(self)
+2026-05-21T21:05:32.690290367Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.690294328Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+2026-05-21T21:05:32.690299049Z [err]      self.__connect()
+2026-05-21T21:05:32.690303502Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+2026-05-21T21:05:32.690307734Z [err]      with util.safe_reraise():
+2026-05-21T21:05:32.691800916Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 979, in _request_authentication
+2026-05-21T21:05:32.691806976Z [err]      auth_packet = _auth.caching_sha2_password_auth(self, auth_packet)
+2026-05-21T21:05:32.691810971Z [err]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.691817225Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:32.691820288Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:32.691823562Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+2026-05-21T21:05:32.691826998Z [err]      self.dbapi_connection = connection = pool._invoke_creator(self)
+2026-05-21T21:05:32.691831135Z [err]                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.691834557Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+2026-05-21T21:05:32.691837757Z [err]      return dialect.connect(*cargs_tup, **cparams)
+2026-05-21T21:05:32.691841229Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.691844711Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+2026-05-21T21:05:32.691848430Z [err]      return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+2026-05-21T21:05:32.691851446Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.691855959Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 361, in __init__
+2026-05-21T21:05:32.691858944Z [err]      self.connect()
+2026-05-21T21:05:32.691862183Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 669, in connect
+2026-05-21T21:05:32.691865294Z [err]      self._request_authentication()
+2026-05-21T21:05:32.693283091Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 267, in caching_sha2_password_auth
+2026-05-21T21:05:32.693286064Z [err]      data = sha2_rsa_encrypt(conn.password, conn.salt, conn.server_public_key)
+2026-05-21T21:05:32.693288737Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:32.693291455Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 144, in sha2_rsa_encrypt
+2026-05-21T21:05:32.693294473Z [err]      raise RuntimeError(
+2026-05-21T21:05:32.693297647Z [err]  RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2026-05-21T21:05:32.693300410Z [err]  [2026-05-21 21:05:32 +0000] [3] [INFO] Worker exiting (pid: 3)
+2026-05-21T21:05:32.704213040Z [err]  [2026-05-21 21:05:32 +0000] [2] [ERROR] Worker (pid:3) exited with code 3
+2026-05-21T21:05:32.704216081Z [err]  [2026-05-21 21:05:32 +0000] [2] [ERROR] Shutting down: Master
+2026-05-21T21:05:32.704219546Z [err]  [2026-05-21 21:05:32 +0000] [2] [ERROR] Reason: Worker failed to boot.
+2026-05-21T21:05:33.325839449Z [err]  [2026-05-21 21:05:33 +0000] [2] [INFO] Starting gunicorn 23.0.0
+2026-05-21T21:05:33.325843265Z [err]  [2026-05-21 21:05:33 +0000] [2] [INFO] Listening at: http://0.0.0.0:8080 (2)
+2026-05-21T21:05:33.325845871Z [err]  [2026-05-21 21:05:33 +0000] [2] [INFO] Using worker: sync
+2026-05-21T21:05:33.325848517Z [err]  [2026-05-21 21:05:33 +0000] [3] [INFO] Booting worker with pid: 3
+2026-05-21T21:05:33.696674081Z [err]      return self.load_wsgiapp()
+2026-05-21T21:05:33.696684091Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.696689562Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-05-21T21:05:33.696694117Z [err]      return util.import_app(self.app_uri)
+2026-05-21T21:05:33.696699078Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.696704593Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+2026-05-21T21:05:33.696709391Z [err]      mod = importlib.import_module(module)
+2026-05-21T21:05:33.696714804Z [err]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.696747081Z [err]  [2026-05-21 21:05:33 +0000] [3] [ERROR] Exception in worker process
+2026-05-21T21:05:33.696749996Z [err]  Traceback (most recent call last):
+2026-05-21T21:05:33.696752976Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-05-21T21:05:33.696756255Z [err]      worker.init_process()
+2026-05-21T21:05:33.696759095Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-05-21T21:05:33.696762313Z [err]      self.load_wsgi()
+2026-05-21T21:05:33.696765359Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-05-21T21:05:33.696768260Z [err]      self.wsgi = self.app.wsgi()
+2026-05-21T21:05:33.696771108Z [err]                  ^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.696774042Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-05-21T21:05:33.696777647Z [err]      self.callable = self.load()
+2026-05-21T21:05:33.696780688Z [err]                      ^^^^^^^^^^^
+2026-05-21T21:05:33.696783840Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-05-21T21:05:33.697658864Z [err]      db.create_all()
+2026-05-21T21:05:33.697663253Z [err]    File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-05-21T21:05:33.697668009Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+2026-05-21T21:05:33.697668508Z [err]      return _bootstrap._gcd_import(name[level:], package, level)
+2026-05-21T21:05:33.697674804Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.697678718Z [err]      self._call_for_binds(bind_key, "create_all")
+2026-05-21T21:05:33.697680489Z [err]    File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-05-21T21:05:33.697688500Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+2026-05-21T21:05:33.697688554Z [err]    File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-05-21T21:05:33.697694782Z [err]    File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-05-21T21:05:33.697697519Z [err]      getattr(metadata, op_name)(bind=engine)
+2026-05-21T21:05:33.697699796Z [err]    File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-05-21T21:05:33.697705508Z [err]    File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-05-21T21:05:33.697706044Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/schema.py", line 5931, in create_all
+2026-05-21T21:05:33.697709731Z [err]    File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-05-21T21:05:33.697712686Z [err]    File "/app/run.py", line 4, in <module>
+2026-05-21T21:05:33.697717396Z [err]      app = create_app()
+2026-05-21T21:05:33.697720784Z [err]            ^^^^^^^^^^^^
+2026-05-21T21:05:33.697723989Z [err]    File "/app/app/__init__.py", line 21, in create_app
+2026-05-21T21:05:33.698971133Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+2026-05-21T21:05:33.698978183Z [err]      return self.pool.connect()
+2026-05-21T21:05:33.698981692Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.698985025Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+2026-05-21T21:05:33.698988568Z [err]      return _ConnectionFairy._checkout(self)
+2026-05-21T21:05:33.698992465Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.698997700Z [err]      bind._run_ddl_visitor(
+2026-05-21T21:05:33.699000393Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+2026-05-21T21:05:33.699003339Z [err]      with self.begin() as conn:
+2026-05-21T21:05:33.699006454Z [err]    File "/usr/local/lib/python3.11/contextlib.py", line 137, in __enter__
+2026-05-21T21:05:33.699009331Z [err]      return next(self.gen)
+2026-05-21T21:05:33.699012241Z [err]             ^^^^^^^^^^^^^^
+2026-05-21T21:05:33.699015112Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+2026-05-21T21:05:33.699017790Z [err]      with self.connect() as conn:
+2026-05-21T21:05:33.699020517Z [err]           ^^^^^^^^^^^^^^
+2026-05-21T21:05:33.699023481Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+2026-05-21T21:05:33.699026175Z [err]      return self._connection_cls(self)
+2026-05-21T21:05:33.699028922Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.699032823Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+2026-05-21T21:05:33.699035526Z [err]      self._dbapi_connection = engine.raw_connection()
+2026-05-21T21:05:33.699038404Z [err]                               ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.700338274Z [err]      self.__connect()
+2026-05-21T21:05:33.700341662Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+2026-05-21T21:05:33.700345836Z [err]      with util.safe_reraise():
+2026-05-21T21:05:33.700348425Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:33.700353498Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:33.700356682Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+2026-05-21T21:05:33.700359766Z [err]      return self._create_connection()
+2026-05-21T21:05:33.700363073Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.700366096Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 389, in _create_connection
+2026-05-21T21:05:33.700369405Z [err]      return _ConnectionRecord(self)
+2026-05-21T21:05:33.700373519Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.700377068Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+2026-05-21T21:05:33.700384148Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+2026-05-21T21:05:33.700387370Z [err]      fairy = _ConnectionRecord.checkout(pool)
+2026-05-21T21:05:33.700390713Z [err]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.700393881Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+2026-05-21T21:05:33.700397680Z [err]      rec = pool._do_get()
+2026-05-21T21:05:33.700401409Z [err]            ^^^^^^^^^^^^^^
+2026-05-21T21:05:33.700404922Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+2026-05-21T21:05:33.700408556Z [err]      with util.safe_reraise():
+2026-05-21T21:05:33.701545605Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 669, in connect
+2026-05-21T21:05:33.701549352Z [err]      self._request_authentication()
+2026-05-21T21:05:33.701552648Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 979, in _request_authentication
+2026-05-21T21:05:33.701556520Z [err]      auth_packet = _auth.caching_sha2_password_auth(self, auth_packet)
+2026-05-21T21:05:33.701560177Z [err]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.701570046Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:33.701572800Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:33.701575592Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+2026-05-21T21:05:33.701578634Z [err]      self.dbapi_connection = connection = pool._invoke_creator(self)
+2026-05-21T21:05:33.701581551Z [err]                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.701584624Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+2026-05-21T21:05:33.701587343Z [err]      return dialect.connect(*cargs_tup, **cparams)
+2026-05-21T21:05:33.701594850Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.701597703Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+2026-05-21T21:05:33.701600488Z [err]      return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+2026-05-21T21:05:33.701603601Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.701606510Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 361, in __init__
+2026-05-21T21:05:33.701609466Z [err]      self.connect()
+2026-05-21T21:05:33.702819844Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 267, in caching_sha2_password_auth
+2026-05-21T21:05:33.702823287Z [err]      data = sha2_rsa_encrypt(conn.password, conn.salt, conn.server_public_key)
+2026-05-21T21:05:33.702826375Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:33.702829614Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 144, in sha2_rsa_encrypt
+2026-05-21T21:05:33.702832272Z [err]      raise RuntimeError(
+2026-05-21T21:05:33.702835640Z [err]  RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2026-05-21T21:05:33.702839519Z [err]  [2026-05-21 21:05:33 +0000] [3] [INFO] Worker exiting (pid: 3)
+2026-05-21T21:05:33.702843315Z [err]  [2026-05-21 21:05:33 +0000] [2] [ERROR] Worker (pid:3) exited with code 3
+2026-05-21T21:05:33.702847118Z [err]  [2026-05-21 21:05:33 +0000] [2] [ERROR] Shutting down: Master
+2026-05-21T21:05:33.702849886Z [err]  [2026-05-21 21:05:33 +0000] [2] [ERROR] Reason: Worker failed to boot.
+2026-05-21T21:05:34.199940070Z [err]  [2026-05-21 21:05:34 +0000] [2] [INFO] Starting gunicorn 23.0.0
+2026-05-21T21:05:34.199945347Z [err]  [2026-05-21 21:05:34 +0000] [2] [INFO] Listening at: http://0.0.0.0:8080 (2)
+2026-05-21T21:05:34.199949037Z [err]  [2026-05-21 21:05:34 +0000] [2] [INFO] Using worker: sync
+2026-05-21T21:05:34.201434375Z [err]  [2026-05-21 21:05:34 +0000] [3] [INFO] Booting worker with pid: 3
+2026-05-21T21:05:34.429851394Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+2026-05-21T21:05:34.429857725Z [err]      mod = importlib.import_module(module)
+2026-05-21T21:05:34.429863467Z [err]  [2026-05-21 21:05:34 +0000] [3] [ERROR] Exception in worker process
+2026-05-21T21:05:34.429866129Z [err]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.429869222Z [err]  Traceback (most recent call last):
+2026-05-21T21:05:34.429872569Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-05-21T21:05:34.429875452Z [err]      worker.init_process()
+2026-05-21T21:05:34.429879221Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-05-21T21:05:34.429882183Z [err]      self.load_wsgi()
+2026-05-21T21:05:34.429884893Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-05-21T21:05:34.429887722Z [err]      self.wsgi = self.app.wsgi()
+2026-05-21T21:05:34.429890541Z [err]                  ^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.429893621Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-05-21T21:05:34.429896470Z [err]      self.callable = self.load()
+2026-05-21T21:05:34.429899403Z [err]                      ^^^^^^^^^^^
+2026-05-21T21:05:34.429902124Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-05-21T21:05:34.429904944Z [err]      return self.load_wsgiapp()
+2026-05-21T21:05:34.429907699Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.429910638Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-05-21T21:05:34.429913524Z [err]      return util.import_app(self.app_uri)
+2026-05-21T21:05:34.429916774Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.431261200Z [err]      self._call_for_binds(bind_key, "create_all")
+2026-05-21T21:05:34.431261639Z [err]    File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-05-21T21:05:34.431266410Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+2026-05-21T21:05:34.431268301Z [err]      return _bootstrap._gcd_import(name[level:], package, level)
+2026-05-21T21:05:34.431270802Z [err]      getattr(metadata, op_name)(bind=engine)
+2026-05-21T21:05:34.431273608Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.431275839Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/schema.py", line 5931, in create_all
+2026-05-21T21:05:34.431278835Z [err]    File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-05-21T21:05:34.431282885Z [err]    File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-05-21T21:05:34.431286965Z [err]    File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-05-21T21:05:34.431290429Z [err]    File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-05-21T21:05:34.431294183Z [err]    File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-05-21T21:05:34.431297823Z [err]    File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-05-21T21:05:34.431301320Z [err]    File "/app/run.py", line 4, in <module>
+2026-05-21T21:05:34.431304121Z [err]      app = create_app()
+2026-05-21T21:05:34.431306931Z [err]            ^^^^^^^^^^^^
+2026-05-21T21:05:34.431309811Z [err]    File "/app/app/__init__.py", line 21, in create_app
+2026-05-21T21:05:34.431313943Z [err]      db.create_all()
+2026-05-21T21:05:34.431316940Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+2026-05-21T21:05:34.432815433Z [err]      bind._run_ddl_visitor(
+2026-05-21T21:05:34.432820244Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+2026-05-21T21:05:34.432824901Z [err]      with self.begin() as conn:
+2026-05-21T21:05:34.432830371Z [err]    File "/usr/local/lib/python3.11/contextlib.py", line 137, in __enter__
+2026-05-21T21:05:34.432835167Z [err]      return next(self.gen)
+2026-05-21T21:05:34.432838822Z [err]             ^^^^^^^^^^^^^^
+2026-05-21T21:05:34.432842125Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+2026-05-21T21:05:34.432845383Z [err]      with self.connect() as conn:
+2026-05-21T21:05:34.432849073Z [err]           ^^^^^^^^^^^^^^
+2026-05-21T21:05:34.432852635Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+2026-05-21T21:05:34.432857479Z [err]      return self._connection_cls(self)
+2026-05-21T21:05:34.432860976Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.432864547Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+2026-05-21T21:05:34.432868194Z [err]      self._dbapi_connection = engine.raw_connection()
+2026-05-21T21:05:34.432871998Z [err]                               ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.432875977Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+2026-05-21T21:05:34.432879382Z [err]      return self.pool.connect()
+2026-05-21T21:05:34.432883173Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.432886968Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+2026-05-21T21:05:34.432890660Z [err]      return _ConnectionFairy._checkout(self)
+2026-05-21T21:05:34.432894294Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.434487833Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+2026-05-21T21:05:34.434493310Z [err]      fairy = _ConnectionRecord.checkout(pool)
+2026-05-21T21:05:34.434497073Z [err]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.434500372Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+2026-05-21T21:05:34.434503845Z [err]      rec = pool._do_get()
+2026-05-21T21:05:34.434507891Z [err]            ^^^^^^^^^^^^^^
+2026-05-21T21:05:34.434512103Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+2026-05-21T21:05:34.434515636Z [err]      with util.safe_reraise():
+2026-05-21T21:05:34.434519050Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:34.434522603Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:34.434526151Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+2026-05-21T21:05:34.434529683Z [err]      return self._create_connection()
+2026-05-21T21:05:34.434533117Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.434536281Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 389, in _create_connection
+2026-05-21T21:05:34.434539864Z [err]      return _ConnectionRecord(self)
+2026-05-21T21:05:34.434543710Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.434547118Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+2026-05-21T21:05:34.434550745Z [err]      self.__connect()
+2026-05-21T21:05:34.434554855Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+2026-05-21T21:05:34.434558381Z [err]      with util.safe_reraise():
+2026-05-21T21:05:34.435963008Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:34.435969391Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:34.435975296Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+2026-05-21T21:05:34.435979889Z [err]      self.dbapi_connection = connection = pool._invoke_creator(self)
+2026-05-21T21:05:34.435983849Z [err]                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.435988419Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+2026-05-21T21:05:34.435993458Z [err]      return dialect.connect(*cargs_tup, **cparams)
+2026-05-21T21:05:34.435997256Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.436000633Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+2026-05-21T21:05:34.436003949Z [err]      return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+2026-05-21T21:05:34.436007254Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.436010525Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 361, in __init__
+2026-05-21T21:05:34.436013986Z [err]      self.connect()
+2026-05-21T21:05:34.436017336Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 669, in connect
+2026-05-21T21:05:34.436020553Z [err]      self._request_authentication()
+2026-05-21T21:05:34.436023703Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 979, in _request_authentication
+2026-05-21T21:05:34.436026923Z [err]      auth_packet = _auth.caching_sha2_password_auth(self, auth_packet)
+2026-05-21T21:05:34.436029727Z [err]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.437546428Z [err]  RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2026-05-21T21:05:34.437550307Z [err]  [2026-05-21 21:05:34 +0000] [3] [INFO] Worker exiting (pid: 3)
+2026-05-21T21:05:34.437555693Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 267, in caching_sha2_password_auth
+2026-05-21T21:05:34.437559340Z [err]      data = sha2_rsa_encrypt(conn.password, conn.salt, conn.server_public_key)
+2026-05-21T21:05:34.437563879Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:34.437569492Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 144, in sha2_rsa_encrypt
+2026-05-21T21:05:34.437573683Z [err]      raise RuntimeError(
+2026-05-21T21:05:34.499024121Z [err]  [2026-05-21 21:05:34 +0000] [2] [ERROR] Worker (pid:3) exited with code 3
+2026-05-21T21:05:34.499032702Z [err]  [2026-05-21 21:05:34 +0000] [2] [ERROR] Shutting down: Master
+2026-05-21T21:05:34.499035950Z [err]  [2026-05-21 21:05:34 +0000] [2] [ERROR] Reason: Worker failed to boot.
+2026-05-21T21:05:35.150726401Z [err]  [2026-05-21 21:05:35 +0000] [2] [INFO] Starting gunicorn 23.0.0
+2026-05-21T21:05:35.150734623Z [err]  [2026-05-21 21:05:35 +0000] [2] [INFO] Listening at: http://0.0.0.0:8080 (2)
+2026-05-21T21:05:35.150739603Z [err]  [2026-05-21 21:05:35 +0000] [2] [INFO] Using worker: sync
+2026-05-21T21:05:35.150746379Z [err]  [2026-05-21 21:05:35 +0000] [3] [INFO] Booting worker with pid: 3
+2026-05-21T21:05:35.383422921Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+2026-05-21T21:05:35.383429668Z [err]      mod = importlib.import_module(module)
+2026-05-21T21:05:35.383433470Z [err]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.383445088Z [err]  [2026-05-21 21:05:35 +0000] [3] [ERROR] Exception in worker process
+2026-05-21T21:05:35.383448169Z [err]  Traceback (most recent call last):
+2026-05-21T21:05:35.383450937Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-05-21T21:05:35.383453552Z [err]      worker.init_process()
+2026-05-21T21:05:35.383457377Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-05-21T21:05:35.383460073Z [err]      self.load_wsgi()
+2026-05-21T21:05:35.383462882Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-05-21T21:05:35.383465622Z [err]      self.wsgi = self.app.wsgi()
+2026-05-21T21:05:35.383468198Z [err]                  ^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.383470732Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-05-21T21:05:35.383473432Z [err]      self.callable = self.load()
+2026-05-21T21:05:35.383476122Z [err]                      ^^^^^^^^^^^
+2026-05-21T21:05:35.383480249Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-05-21T21:05:35.383482959Z [err]      return self.load_wsgiapp()
+2026-05-21T21:05:35.383486629Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.383489275Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-05-21T21:05:35.383491855Z [err]      return util.import_app(self.app_uri)
+2026-05-21T21:05:35.383494510Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.384786124Z [err]    File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-05-21T21:05:35.384790280Z [err]      return _bootstrap._gcd_import(name[level:], package, level)
+2026-05-21T21:05:35.384793938Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.384798423Z [err]    File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-05-21T21:05:35.384803595Z [err]    File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-05-21T21:05:35.384808221Z [err]    File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-05-21T21:05:35.384811258Z [err]    File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-05-21T21:05:35.384814447Z [err]    File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-05-21T21:05:35.384817622Z [err]    File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-05-21T21:05:35.384821047Z [err]    File "/app/run.py", line 4, in <module>
+2026-05-21T21:05:35.384824401Z [err]      app = create_app()
+2026-05-21T21:05:35.384840012Z [err]            ^^^^^^^^^^^^
+2026-05-21T21:05:35.384844133Z [err]    File "/app/app/__init__.py", line 21, in create_app
+2026-05-21T21:05:35.384847580Z [err]      db.create_all()
+2026-05-21T21:05:35.384850947Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+2026-05-21T21:05:35.384854862Z [err]      self._call_for_binds(bind_key, "create_all")
+2026-05-21T21:05:35.384858567Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+2026-05-21T21:05:35.384862395Z [err]      getattr(metadata, op_name)(bind=engine)
+2026-05-21T21:05:35.384866085Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/schema.py", line 5931, in create_all
+2026-05-21T21:05:35.386424776Z [err]      bind._run_ddl_visitor(
+2026-05-21T21:05:35.386428567Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+2026-05-21T21:05:35.386431389Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+2026-05-21T21:05:35.386435973Z [err]      with self.begin() as conn:
+2026-05-21T21:05:35.386436254Z [err]      self._dbapi_connection = engine.raw_connection()
+2026-05-21T21:05:35.386440557Z [err]    File "/usr/local/lib/python3.11/contextlib.py", line 137, in __enter__
+2026-05-21T21:05:35.386442083Z [err]                               ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.386445499Z [err]      return next(self.gen)
+2026-05-21T21:05:35.386447380Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+2026-05-21T21:05:35.386450944Z [err]             ^^^^^^^^^^^^^^
+2026-05-21T21:05:35.386452381Z [err]      return self.pool.connect()
+2026-05-21T21:05:35.386455722Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+2026-05-21T21:05:35.386459238Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.386460879Z [err]      with self.connect() as conn:
+2026-05-21T21:05:35.386464302Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+2026-05-21T21:05:35.386465752Z [err]           ^^^^^^^^^^^^^^
+2026-05-21T21:05:35.386469914Z [err]      return _ConnectionFairy._checkout(self)
+2026-05-21T21:05:35.386471612Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+2026-05-21T21:05:35.386475130Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.386476659Z [err]      return self._connection_cls(self)
+2026-05-21T21:05:35.386479930Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.387942966Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+2026-05-21T21:05:35.387949780Z [err]      fairy = _ConnectionRecord.checkout(pool)
+2026-05-21T21:05:35.387953159Z [err]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.387956762Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+2026-05-21T21:05:35.387960527Z [err]      rec = pool._do_get()
+2026-05-21T21:05:35.387964488Z [err]            ^^^^^^^^^^^^^^
+2026-05-21T21:05:35.387967951Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+2026-05-21T21:05:35.387971720Z [err]      with util.safe_reraise():
+2026-05-21T21:05:35.387976696Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:35.387980545Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:35.387984042Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+2026-05-21T21:05:35.387988573Z [err]      return self._create_connection()
+2026-05-21T21:05:35.387991648Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.387994718Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 389, in _create_connection
+2026-05-21T21:05:35.387997784Z [err]      return _ConnectionRecord(self)
+2026-05-21T21:05:35.388001056Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.388004784Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+2026-05-21T21:05:35.388008449Z [err]      self.__connect()
+2026-05-21T21:05:35.388011684Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+2026-05-21T21:05:35.388014798Z [err]      with util.safe_reraise():
+2026-05-21T21:05:35.389479677Z [err]      auth_packet = _auth.caching_sha2_password_auth(self, auth_packet)
+2026-05-21T21:05:35.389487914Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:35.389489354Z [err]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.389493034Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:35.389496471Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+2026-05-21T21:05:35.389499302Z [err]      self.dbapi_connection = connection = pool._invoke_creator(self)
+2026-05-21T21:05:35.389502191Z [err]                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.389505860Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+2026-05-21T21:05:35.389509223Z [err]      return dialect.connect(*cargs_tup, **cparams)
+2026-05-21T21:05:35.389512056Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.389515046Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+2026-05-21T21:05:35.389517810Z [err]      return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+2026-05-21T21:05:35.389520740Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.389523399Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 361, in __init__
+2026-05-21T21:05:35.389525895Z [err]      self.connect()
+2026-05-21T21:05:35.389528600Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 669, in connect
+2026-05-21T21:05:35.389531169Z [err]      self._request_authentication()
+2026-05-21T21:05:35.389533939Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 979, in _request_authentication
+2026-05-21T21:05:35.391223381Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 267, in caching_sha2_password_auth
+2026-05-21T21:05:35.391227527Z [err]      data = sha2_rsa_encrypt(conn.password, conn.salt, conn.server_public_key)
+2026-05-21T21:05:35.391230665Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:35.391233372Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 144, in sha2_rsa_encrypt
+2026-05-21T21:05:35.391237805Z [err]      raise RuntimeError(
+2026-05-21T21:05:35.391241798Z [err]  RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2026-05-21T21:05:35.391244692Z [err]  [2026-05-21 21:05:35 +0000] [3] [INFO] Worker exiting (pid: 3)
+2026-05-21T21:05:35.451408761Z [err]  [2026-05-21 21:05:35 +0000] [2] [ERROR] Worker (pid:3) exited with code 3
+2026-05-21T21:05:35.451413144Z [err]  [2026-05-21 21:05:35 +0000] [2] [ERROR] Shutting down: Master
+2026-05-21T21:05:35.451421521Z [err]  [2026-05-21 21:05:35 +0000] [2] [ERROR] Reason: Worker failed to boot.
+2026-05-21T21:05:36.082839909Z [err]  [2026-05-21 21:05:36 +0000] [2] [INFO] Starting gunicorn 23.0.0
+2026-05-21T21:05:36.082843403Z [err]  [2026-05-21 21:05:36 +0000] [2] [INFO] Listening at: http://0.0.0.0:8080 (2)
+2026-05-21T21:05:36.082846295Z [err]  [2026-05-21 21:05:36 +0000] [2] [INFO] Using worker: sync
+2026-05-21T21:05:36.084448705Z [err]  [2026-05-21 21:05:36 +0000] [3] [INFO] Booting worker with pid: 3
+2026-05-21T21:05:36.314057701Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.314064555Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+2026-05-21T21:05:36.314064602Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.314069946Z [err]      mod = importlib.import_module(module)
+2026-05-21T21:05:36.314073515Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-05-21T21:05:36.314075358Z [err]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.314076788Z [err]  [2026-05-21 21:05:36 +0000] [3] [ERROR] Exception in worker process
+2026-05-21T21:05:36.314077750Z [err]      self.callable = self.load()
+2026-05-21T21:05:36.314080836Z [err]      return util.import_app(self.app_uri)
+2026-05-21T21:05:36.314086681Z [err]  Traceback (most recent call last):
+2026-05-21T21:05:36.314086904Z [err]                      ^^^^^^^^^^^
+2026-05-21T21:05:36.314093811Z [err]      worker.init_process()
+2026-05-21T21:05:36.314094614Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-05-21T21:05:36.314096599Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-05-21T21:05:36.314096854Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-05-21T21:05:36.314102485Z [err]      return self.load_wsgiapp()
+2026-05-21T21:05:36.314104209Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-05-21T21:05:36.314106561Z [err]      self.wsgi = self.app.wsgi()
+2026-05-21T21:05:36.314109596Z [err]      self.load_wsgi()
+2026-05-21T21:05:36.314112841Z [err]                  ^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.314117374Z [err]    File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-05-21T21:05:36.315652139Z [err]    File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-05-21T21:05:36.315660175Z [err]      return _bootstrap._gcd_import(name[level:], package, level)
+2026-05-21T21:05:36.315663808Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.315669296Z [err]    File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-05-21T21:05:36.315673020Z [err]    File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-05-21T21:05:36.315676487Z [err]    File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-05-21T21:05:36.315679836Z [err]    File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-05-21T21:05:36.315682836Z [err]    File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-05-21T21:05:36.315687026Z [err]    File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-05-21T21:05:36.315690778Z [err]    File "/app/run.py", line 4, in <module>
+2026-05-21T21:05:36.315694916Z [err]      app = create_app()
+2026-05-21T21:05:36.315699077Z [err]            ^^^^^^^^^^^^
+2026-05-21T21:05:36.315702536Z [err]    File "/app/app/__init__.py", line 21, in create_app
+2026-05-21T21:05:36.315705698Z [err]      db.create_all()
+2026-05-21T21:05:36.315709209Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 900, in create_all
+2026-05-21T21:05:36.315712486Z [err]      self._call_for_binds(bind_key, "create_all")
+2026-05-21T21:05:36.315716003Z [err]    File "/usr/local/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 881, in _call_for_binds
+2026-05-21T21:05:36.315720523Z [err]      getattr(metadata, op_name)(bind=engine)
+2026-05-21T21:05:36.315723754Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/schema.py", line 5931, in create_all
+2026-05-21T21:05:36.317113424Z [err]      return _ConnectionFairy._checkout(self)
+2026-05-21T21:05:36.317120739Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.317129662Z [err]      bind._run_ddl_visitor(
+2026-05-21T21:05:36.317134061Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3267, in _run_ddl_visitor
+2026-05-21T21:05:36.317137177Z [err]      with self.begin() as conn:
+2026-05-21T21:05:36.317140398Z [err]    File "/usr/local/lib/python3.11/contextlib.py", line 137, in __enter__
+2026-05-21T21:05:36.317143495Z [err]      return next(self.gen)
+2026-05-21T21:05:36.317146412Z [err]             ^^^^^^^^^^^^^^
+2026-05-21T21:05:36.317149414Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3257, in begin
+2026-05-21T21:05:36.317152341Z [err]      with self.connect() as conn:
+2026-05-21T21:05:36.317155069Z [err]           ^^^^^^^^^^^^^^
+2026-05-21T21:05:36.317158155Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+2026-05-21T21:05:36.317160880Z [err]      return self._connection_cls(self)
+2026-05-21T21:05:36.317164119Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.317167081Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+2026-05-21T21:05:36.317170667Z [err]      self._dbapi_connection = engine.raw_connection()
+2026-05-21T21:05:36.317173375Z [err]                               ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.317176225Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+2026-05-21T21:05:36.317179213Z [err]      return self.pool.connect()
+2026-05-21T21:05:36.317182232Z [err]             ^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.317184947Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+2026-05-21T21:05:36.318836175Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1272, in _checkout
+2026-05-21T21:05:36.318839721Z [err]      fairy = _ConnectionRecord.checkout(pool)
+2026-05-21T21:05:36.318843042Z [err]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.318846244Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+2026-05-21T21:05:36.318849668Z [err]      rec = pool._do_get()
+2026-05-21T21:05:36.318852978Z [err]            ^^^^^^^^^^^^^^
+2026-05-21T21:05:36.318855995Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+2026-05-21T21:05:36.318859149Z [err]      with util.safe_reraise():
+2026-05-21T21:05:36.318863632Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:36.318867163Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:36.318870733Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 175, in _do_get
+2026-05-21T21:05:36.318874494Z [err]      return self._create_connection()
+2026-05-21T21:05:36.318877697Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.318880778Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 389, in _create_connection
+2026-05-21T21:05:36.318883819Z [err]      return _ConnectionRecord(self)
+2026-05-21T21:05:36.318886680Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.318889687Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+2026-05-21T21:05:36.318893438Z [err]      self.__connect()
+2026-05-21T21:05:36.318896636Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+2026-05-21T21:05:36.318899872Z [err]      with util.safe_reraise():
+2026-05-21T21:05:36.320471130Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 979, in _request_authentication
+2026-05-21T21:05:36.320475106Z [err]      auth_packet = _auth.caching_sha2_password_auth(self, auth_packet)
+2026-05-21T21:05:36.320478389Z [err]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.320496038Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+2026-05-21T21:05:36.320499591Z [err]      raise exc_value.with_traceback(exc_tb)
+2026-05-21T21:05:36.320503201Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+2026-05-21T21:05:36.320506724Z [err]      self.dbapi_connection = connection = pool._invoke_creator(self)
+2026-05-21T21:05:36.320510908Z [err]                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.320514342Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py", line 667, in connect
+2026-05-21T21:05:36.320518064Z [err]      return dialect.connect(*cargs_tup, **cparams)
+2026-05-21T21:05:36.320521718Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.320525375Z [err]    File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 630, in connect
+2026-05-21T21:05:36.320528903Z [err]      return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+2026-05-21T21:05:36.320532570Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.320536219Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 361, in __init__
+2026-05-21T21:05:36.320539793Z [err]      self.connect()
+2026-05-21T21:05:36.320543644Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/connections.py", line 669, in connect
+2026-05-21T21:05:36.320546753Z [err]      self._request_authentication()
+2026-05-21T21:05:36.321812439Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 267, in caching_sha2_password_auth
+2026-05-21T21:05:36.321818965Z [err]      data = sha2_rsa_encrypt(conn.password, conn.salt, conn.server_public_key)
+2026-05-21T21:05:36.321823507Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-21T21:05:36.321827462Z [err]    File "/usr/local/lib/python3.11/site-packages/pymysql/_auth.py", line 144, in sha2_rsa_encrypt
+2026-05-21T21:05:36.321830831Z [err]      raise RuntimeError(
+2026-05-21T21:05:36.321836060Z [err]  RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2026-05-21T21:05:36.321840199Z [err]  [2026-05-21 21:05:36 +0000] [3] [INFO] Worker exiting (pid: 3)
+2026-05-21T21:05:36.385732157Z [err]  [2026-05-21 21:05:36 +0000] [2] [ERROR] Worker (pid:3) exited with code 3
+2026-05-21T21:05:36.385736797Z [err]  [2026-05-21 21:05:36 +0000] [2] [ERROR] Shutting down: Master
+2026-05-21T21:05:36.385739781Z [err]  [2026-05-21 21:05:36 +0000] [2] [ERROR] Reason: Worker failed to boot.
