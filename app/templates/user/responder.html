@@ -14,7 +14,17 @@
             <p class="text-muted">{{ encuesta.descripcion }}</p>
         </div>
 
-        <form method="POST">
+            <form method="POST">
+                {% if encuesta.recolectar_ubicacion %}
+                <div class="card mb-3 p-3">
+                    <label class="form-label fw-bold mb-2">Compartir ubicación</label>
+                    <p class="text-muted">Al activar, se solicitará permiso para obtener tu ubicación y se mostrará un mapa junto a tus respuestas.</p>
+                    <button type="button" id="locateBtn" class="btn btn-outline-primary btn-sm mb-2">Obtener mi ubicación</button>
+                    <div id="map" style="height:200px; display:none; margin-top:8px;"></div>
+                    <input type="hidden" name="latitude" id="latitude">
+                    <input type="hidden" name="longitude" id="longitude">
+                </div>
+                {% endif %}
             {% for pregunta in encuesta.preguntas|sort(attribute='orden') %}
             <div class="card mb-3 p-3">
                 <label class="form-label fw-bold mb-2">
@@ -62,4 +72,56 @@
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-sA+e2H8rTtpsgB2t27Yk2m3wQw9vRj3tqv+6bQTb6v0=" crossorigin=""/>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-o9N1j8p2b7A2fQb1z2mG3sP1k0o0gHq6r1f6r5uWwY=" crossorigin=""></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const locateBtn = document.getElementById('locateBtn');
+            if (!locateBtn) return;
+
+            let map, marker;
+            locateBtn.addEventListener('click', function () {
+                if (!navigator.geolocation) {
+                    alert('Geolocalización no es soportada por tu navegador.');
+                    return;
+                }
+                locateBtn.disabled = true;
+                locateBtn.innerText = 'Obteniendo ubicación...';
+                navigator.geolocation.getCurrentPosition(function (pos) {
+                    const lat = pos.coords.latitude;
+                    const lon = pos.coords.longitude;
+                    document.getElementById('latitude').value = lat;
+                    document.getElementById('longitude').value = lon;
+
+                    const mapDiv = document.getElementById('map');
+                    mapDiv.style.display = 'block';
+                    if (!map) {
+                        map = L.map('map').setView([lat, lon], 13);
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 19,
+                            attribution: '&copy; OpenStreetMap contributors'
+                        }).addTo(map);
+                        marker = L.marker([lat, lon]).addTo(map);
+                    } else {
+                        map.setView([lat, lon], 13);
+                        marker.setLatLng([lat, lon]);
+                    }
+
+                    locateBtn.innerText = 'Ubicación obtenida';
+                }, function (err) {
+                    alert('No se pudo obtener la ubicación: ' + err.message);
+                    locateBtn.disabled = false;
+                    locateBtn.innerText = 'Obtener mi ubicación';
+                }, { enableHighAccuracy: true, timeout: 10000 });
+            });
+        });
+    </script>
 {% endblock %}

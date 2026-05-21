@@ -7,6 +7,7 @@ class Encuesta(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(200), nullable=False)
     descripcion = db.Column(db.Text)
+    recolectar_ubicacion = db.Column(db.Boolean, default=False)
     activa = db.Column(db.Boolean, default=True)
     fecha_creacion = db.Column(db.DateTime, default=datetime.utcnow)
     creador_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=True)
@@ -43,6 +44,8 @@ class RespuestaEncuesta(db.Model):
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=True)
     fecha_completada = db.Column(db.DateTime, default=datetime.utcnow)
     ip_address = db.Column(db.String(45))
+    latitude = db.Column(db.Float, nullable=True)
+    longitude = db.Column(db.Float, nullable=True)
     
     respuestas = db.relationship('Respuesta', backref='respuesta_encuesta', lazy=True, cascade='all, delete-orphan')
 

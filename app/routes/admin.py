@@ -63,10 +63,12 @@ def crear_encuesta():
     if request.method == 'POST':
         titulo = request.form['titulo']
         descripcion = request.form['descripcion']
-        
+        recolectar_ubicacion = request.form.get('recolectar_ubicacion') == 'on'
+
         encuesta = Encuesta(
             titulo=titulo,
             descripcion=descripcion,
+            recolectar_ubicacion=recolectar_ubicacion,
             creador_id=session['user_id']
         )
         db.session.add(encuesta)

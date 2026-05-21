@@ -20,9 +20,23 @@ def responder(id):
     
     if request.method == 'POST':
         # Guardar respuestas
+        # Intentar leer lat/lon enviados (si el creador activó la recolección)
+        lat = request.form.get('latitude')
+        lon = request.form.get('longitude')
+        try:
+            lat_val = float(lat) if lat else None
+        except ValueError:
+            lat_val = None
+        try:
+            lon_val = float(lon) if lon else None
+        except ValueError:
+            lon_val = None
+
         respuesta_encuesta = RespuestaEncuesta(
             encuesta_id=id,
-            ip_address=request.remote_addr
+            ip_address=request.remote_addr,
+            latitude=lat_val,
+            longitude=lon_val
         )
         db.session.add(respuesta_encuesta)
         db.session.flush()
