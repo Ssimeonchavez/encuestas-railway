@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Crear Encuesta{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card p-4">
+            <h3 class="mb-4">✏️ Crear Nueva Encuesta</h3>
+            <form method="POST" id="encuestaForm">
+                <div class="mb-3">
+                    <label class="form-label">Título de la encuesta</label>
+                    <input type="text" name="titulo" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Descripción</label>
+                    <textarea name="descripcion" class="form-control" rows="2"></textarea>
+                </div>
+
+                <hr class="my-4">
+                <h5>Preguntas</h5>
+                <div id="preguntas-container">
+                    <!-- Las preguntas se agregan aquí dinámicamente -->
+                </div>
+
+                <button type="button" class="btn btn-outline-primary w-100 mb-4" onclick="agregarPregunta()">
+                    + Agregar Pregunta
+                </button>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">Guardar Encuesta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+let contadorPreguntas = 0;
+
+function agregarPregunta() {
+    contadorPreguntas++;
+    const container = document.getElementById('preguntas-container');
+    const div = document.createElement('div');
+    div.className = 'card mb-3 p-3 bg-light';
+    div.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <strong>Pregunta #${contadorPreguntas}</strong>
+            <button type="button" class="btn btn-sm btn-outline-danger" onclick="this.closest('.card').remove()">×</button>
+        </div>
+        <div class="mb-2">
+            <input type="text" name="pregunta_texto[]" class="form-control" placeholder="Texto de la pregunta" required>
+        </div>
+        <div class="row g-2">
+            <div class="col-md-6">
+                <select name="pregunta_tipo[]" class="form-select" onchange="toggleOpciones(this)">
+                    <option value="texto">Respuesta corta</option>
+                    <option value="parrafo">Párrafo</option>
+                    <option value="opcion_multiple">Opción múltiple</option>
+                    <option value="escala">Escala (1-5)</option>
+                </select>
+            </div>
+            <div class="col-md-6 opciones-container" style="display:none;">
+                <input type="text" name="pregunta_opciones[]" class="form-control" placeholder="Opciones separadas por coma">
+            </div>
+        </div>
+    `;
+    container.appendChild(div);
+}
+
+function toggleOpciones(select) {
+    const container = select.closest('.row').querySelector('.opciones-container');
+    container.style.display = select.value === 'opcion_multiple' ? 'block' : 'none';
+}
+
+// Agregar primera pregunta automáticamente
+agregarPregunta();
+</script>
+{% endblock %}

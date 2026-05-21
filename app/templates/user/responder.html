@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}{{ encuesta.titulo }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="mb-4">
+            <a href="{{ url_for('user.index') }}" class="btn btn-outline-secondary btn-sm">← Volver</a>
+        </div>
+
+        <div class="card p-4 mb-4">
+            <h3>{{ encuesta.titulo }}</h3>
+            <p class="text-muted">{{ encuesta.descripcion }}</p>
+        </div>
+
+        <form method="POST">
+            {% for pregunta in encuesta.preguntas|sort(attribute='orden') %}
+            <div class="card mb-3 p-3">
+                <label class="form-label fw-bold mb-2">
+                    {{ pregunta.texto }}
+                    {% if pregunta.tipo == 'opcion_multiple' %}
+                        <span class="badge bg-info">Selecciona una</span>
+                    {% endif %}
+                </label>
+                
+                {% if pregunta.tipo == 'texto' %}
+                    <input type="text" name="pregunta_{{ pregunta.id }}" class="form-control" required>
+                
+                {% elif pregunta.tipo == 'parrafo' %}
+                    <textarea name="pregunta_{{ pregunta.id }}" class="form-control" rows="3" required></textarea>
+                
+                {% elif pregunta.tipo == 'opcion_multiple' %}
+                    {% for opcion in pregunta.opciones.split(',') %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pregunta_{{ pregunta.id }}" 
+                               value="{{ opcion.strip() }}" id="opt_{{ pregunta.id }}_{{ loop.index }}" required>
+                        <label class="form-check-label" for="opt_{{ pregunta.id }}_{{ loop.index }}">
+                            {{ opcion.strip() }}
+                        </label>
+                    </div>
+                    {% endfor %}
+                
+                {% elif pregunta.tipo == 'escala' %}
+                    <div class="d-flex gap-3 mt-2">
+                        {% for i in range(1, 6) %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pregunta_{{ pregunta.id }}" 
+                                   value="{{ i }}" id="escala_{{ pregunta.id }}_{{ i }}" required>
+                            <label class="form-check-label" for="escala_{{ pregunta.id }}_{{ i }}">{{ i }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <small class="text-muted">1 = Muy malo, 5 = Excelente</small>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary btn-lg">Enviar Respuestas</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

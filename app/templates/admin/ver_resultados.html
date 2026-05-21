@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Resultados - {{ encuesta.titulo }}{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline-secondary btn-sm">← Volver</a>
+</div>
+
+<h2>📊 {{ encuesta.titulo }}</h2>
+<p class="text-muted">{{ encuesta.descripcion }}</p>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card text-center p-3">
+            <h3 class="text-primary">{{ encuesta.respuestas|length }}</h3>
+            <p class="text-muted mb-0">Respuestas totales</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center p-3">
+            <h3 class="text-primary">{{ encuesta.preguntas|length }}</h3>
+            <p class="text-muted mb-0">Preguntas</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center p-3">
+            <h3 class="text-primary">{{ encuesta.fecha_creacion.strftime('%d/%m/%Y') }}</h3>
+            <p class="text-muted mb-0">Fecha de creación</p>
+        </div>
+    </div>
+</div>
+
+<h4 class="mt-5 mb-3">Respuestas por pregunta</h4>
+{% for pregunta in encuesta.preguntas %}
+<div class="card mb-3">
+    <div class="card-header bg-white">
+        <strong>{{ pregunta.texto }}</strong>
+        <span class="badge bg-secondary ms-2">{{ pregunta.tipo }}</span>
+    </div>
+    <div class="card-body">
+        {% if pregunta.respuestas %}
+            <ul class="list-group list-group-flush">
+                {% for respuesta in pregunta.respuestas %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ respuesta.valor }}
+                    <small class="text-muted">{{ respuesta.fecha.strftime('%d/%m %H:%M') }}</small>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted mb-0">Sin respuestas aún</p>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
