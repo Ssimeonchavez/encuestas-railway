@@ -100,7 +100,8 @@ def crear_encuesta():
 @admin_required
 def ver_resultados(id):
     encuesta = Encuesta.query.get_or_404(id)
-    return render_template('admin/ver_resultados.html', encuesta=encuesta)
+    ubicaciones_count = sum(1 for r in encuesta.respuestas if r.latitude is not None and r.longitude is not None)
+    return render_template('admin/ver_resultados.html', encuesta=encuesta, ubicaciones_count=ubicaciones_count)
 
 @admin_bp.route('/encuesta/<int:id>/toggle', methods=['POST'])
 @admin_required
@@ -116,6 +117,8 @@ def toggle_encuesta(id):
 @admin_required
 def eliminar_encuesta(id):
     encuesta = Encuesta.query.get_or_404(id)
+    for respuesta_encuesta in encuesta.respuestas:
+        db.session.delete(respuesta_encuesta)
     db.session.delete(encuesta)
     db.session.commit()
     flash('Encuesta eliminada.', 'success')

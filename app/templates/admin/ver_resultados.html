@@ -33,6 +33,62 @@
     </div>
 </div>
 
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card p-3 fade-up fade-up-delay-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+                <div>
+                    <h5 class="mb-1">Ubicaciones capturadas</h5>
+                    <p class="text-muted mb-0">Respondieron compartiendo ubicación en esta encuesta.</p>
+                </div>
+                <div class="text-end">
+                    <span class="badge bg-warning text-dark fs-6">{{ ubicaciones_count }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4 mt-4 fade-up fade-up-delay-5">
+    <div class="card-header bg-white">
+        <strong>Lista de respuestas y ubicación</strong>
+    </div>
+    <div class="card-body p-0">
+        <table class="table mb-0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Fecha</th>
+                    <th>IP</th>
+                    <th>Ubicación</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for respuesta_encuesta in encuesta.respuestas %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ respuesta_encuesta.fecha_completada.strftime('%d/%m/%Y %H:%M') }}</td>
+                    <td>{{ respuesta_encuesta.ip_address or 'N/A' }}</td>
+                    <td>
+                        {% if respuesta_encuesta.latitude is not none and respuesta_encuesta.longitude is not none %}
+                            <a href="https://www.google.com/maps/search/?api=1&query={{ respuesta_encuesta.latitude }},{{ respuesta_encuesta.longitude }}" target="_blank">
+                                {{ respuesta_encuesta.latitude|round(5) }}, {{ respuesta_encuesta.longitude|round(5) }}
+                            </a>
+                        {% else %}
+                            <span class="text-muted">No disponible</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" class="text-muted text-center py-4">Aún no hay respuestas registradas.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <h4 class="mt-5 mb-3 fade-up fade-up-delay-1">Respuestas por pregunta</h4>
 {% for pregunta in encuesta.preguntas %}
 <div class="card mb-3 fade-up" style="animation-delay: {{ (loop.index0 * 0.06)|round(2) }}s;">

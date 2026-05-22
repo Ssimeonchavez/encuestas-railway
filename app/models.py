@@ -13,7 +13,7 @@ class Encuesta(db.Model):
     creador_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=True)
     
     preguntas = db.relationship('Pregunta', backref='encuesta', lazy=True, cascade='all, delete-orphan')
-    respuestas = db.relationship('RespuestaEncuesta', backref='encuesta', lazy=True)
+    respuestas = db.relationship('RespuestaEncuesta', backref='encuesta', lazy=True, cascade='all, delete-orphan')
 
 class Pregunta(db.Model):
     __tablename__ = 'preguntas'
