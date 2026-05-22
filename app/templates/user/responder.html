@@ -77,13 +77,11 @@
 {% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-sA+e2H8rTtpsgB2t27Yk2m3wQw9vRj3tqv+6bQTb6v0=" crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous"/>
 {% endblock %}
 
 {% block extra_js %}
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-o9N1j8p2b7A2fQb1z2mG3sP1k0o0gHq6r1f6r5uWwY=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const locateBtn = document.getElementById('locateBtn');
@@ -105,7 +103,13 @@
             function showMap(lat, lon) {
                 const mapDiv = document.getElementById('map');
                 mapDiv.style.display = 'block';
-                
+                mapDiv.style.minHeight = '200px';
+
+                if (!window.L) {
+                    setStatus('Error cargando el mapa. Recarga la página.', true);
+                    return;
+                }
+
                 if (!map) {
                     map = L.map('map').setView([lat, lon], 13);
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -113,16 +117,27 @@
                         attribution: '&copy; OpenStreetMap contributors'
                     }).addTo(map);
                     marker = L.marker([lat, lon]).addTo(map);
-                    
-                    // Ajuste de tamaño para evitar el mapa gris/incompleto
-                    setTimeout(function() {
-                        map.invalidateSize();
-                    }, 100);
                 } else {
                     map.setView([lat, lon], 13);
                     marker.setLatLng([lat, lon]);
-                    map.invalidateSize();
                 }
+
+                setTimeout(function () {
+                    map.invalidateSize();
+                }, 200);
+            }
+
+            function onGeolocationError(err) {
+                let message = 'No se pudo obtener la ubicación.';
+                if (err.code === 1) {
+                    message = 'Permiso denegado. Activa la ubicación en tu navegador.';
+                } else if (err.code === 2) {
+                    message = 'No se pudo determinar tu ubicación. Revisa tu GPS o conexión.';
+                } else if (err.code === 3) {
+                    message = 'Tiempo de espera agotado. Intenta de nuevo.';
+                }
+                setStatus(message, true);
+                resetLocateButton();
             }
 
             locateBtn.addEventListener('click', function () {
@@ -137,27 +152,30 @@
                 document.getElementById('latitude').value = '';
                 document.getElementById('longitude').value = '';
 
-                navigator.geolocation.getCurrentPosition(function (pos) {
+                function submitPosition(pos) {
                     const lat = pos.coords.latitude;
                     const lon = pos.coords.longitude;
                     document.getElementById('latitude').value = lat;
                     document.getElementById('longitude').value = lon;
-
                     showMap(lat, lon);
                     setStatus('Ubicación obtenida correctamente.', false);
                     locateBtn.innerText = 'Ubicación obtenida';
-                }, function (err) {
-                    let message = 'No se pudo obtener la ubicación.';
-                    if (err.code === 1) {
-                        message = 'Permiso denegado. Activa la ubicación en tu navegador.';
-                    } else if (err.code === 2) {
-                        message = 'No se pudo determinar tu ubicación. Revisa tu GPS o conexión.';
-                    } else if (err.code === 3) {
-                        message = 'Tiempo de espera agotado. Intenta de nuevo.';
-                    }
-                    setStatus(message, true);
-                    resetLocateButton();
-                }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
+                }
+
+                if (navigator.permissions) {
+                    navigator.permissions.query({ name: 'geolocation' }).then(function (permissionStatus) {
+                        if (permissionStatus.state === 'denied') {
+                            setStatus('Permiso de ubicación denegado. Revisa la configuración del navegador.', true);
+                            resetLocateButton();
+                            return;
+                        }
+                        navigator.geolocation.getCurrentPosition(submitPosition, onGeolocationError, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
+                    }).catch(function () {
+                        navigator.geolocation.getCurrentPosition(submitPosition, onGeolocationError, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
+                    });
+                } else {
+                    navigator.geolocation.getCurrentPosition(submitPosition, onGeolocationError, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
+                }
             });
         });
     </script>
