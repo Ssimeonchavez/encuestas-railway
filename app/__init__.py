@@ -70,17 +70,23 @@ def format_datetime_dual(value, local_tz=None, fmt='%H:%M'):
 
 def ensure_timezone_column(app):
     with app.app_context():
-        db.create_all()
-        inspector = inspect(db.engine)
-        if 'respuestas_encuesta' in inspector.get_table_names():
-            columns = [col['name'] for col in inspector.get_columns('respuestas_encuesta')]
-            if 'timezone' not in columns:
-                dialect = db.engine.dialect.name
-                alter_sql = 'ALTER TABLE respuestas_encuesta ADD COLUMN timezone VARCHAR(64) NULL'
-                if dialect == 'sqlite':
-                    alter_sql = 'ALTER TABLE respuestas_encuesta ADD COLUMN timezone VARCHAR(64)'
-                db.session.execute(text(alter_sql))
-                db.session.commit()
+        try:
+            db.create_all()
+            inspector = inspect(db.engine)
+            if 'respuestas_encuesta' in inspector.get_table_names():
+                columns = [col['name'] for col in inspector.get_columns('respuestas_encuesta')]
+                if 'timezone' not in columns:
+                    dialect = db.engine.dialect.name
+                    alter_sql = 'ALTER TABLE respuestas_encuesta ADD COLUMN timezone VARCHAR(64) NULL'
+                    if dialect == 'sqlite':
+                        alter_sql = 'ALTER TABLE respuestas_encuesta ADD COLUMN timezone VARCHAR(64)'
+                    db.session.execute(text(alter_sql))
+                    db.session.commit()
+        except Exception as e:
+            # Si falla la conexión a BD durante startup, log pero continúa
+            # La BD se inicializará cuando se logre conectar
+            print(f"Advertencia: No se pudo inicializar la BD: {e}")
+            pass
 
 
 db = SQLAlchemy()
