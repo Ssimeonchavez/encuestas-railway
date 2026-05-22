@@ -1,6 +1,8 @@
+from collections import Counter
+from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from app import db
-from app.models import Encuesta, Pregunta, Usuario
+from app.models import Encuesta, Pregunta, RespuestaEncuesta, Usuario
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -101,7 +103,97 @@ def crear_encuesta():
 def ver_resultados(id):
     encuesta = Encuesta.query.get_or_404(id)
     ubicaciones_count = sum(1 for r in encuesta.respuestas if r.latitude is not None and r.longitude is not None)
-    return render_template('admin/ver_resultados.html', encuesta=encuesta, ubicaciones_count=ubicaciones_count)
+    fuera_peru_count = sum(1 for r in encuesta.respuestas if (r.timezone or 'America/Lima') != 'America/Lima')
+    return render_template('admin/ver_resultados.html', encuesta=encuesta, ubicaciones_count=ubicaciones_count, fuera_peru_count=fuera_peru_count)
+
+@admin_bp.route('/estadisticas')
+@admin_required
+def estadisticas():
+    def parse_date(value):
+        try:
+            return datetime.strptime(value, '%Y-%m-%d').date()
+        except (TypeError, ValueError):
+            return None
+
+    start_date = parse_date(request.args.get('start_date'))
+    end_date = parse_date(request.args.get('end_date'))
+    if start_date and end_date and start_date > end_date:
+        start_date, end_date = end_date, start_date
+
+    def in_range(fecha):
+        if not start_date and not end_date:
+            return True
+        fecha_date = fecha.date()
+        if start_date and fecha_date < start_date:
+            return False
+        if end_date and fecha_date > end_date:
+            return False
+        return True
+
+    encuestas = Encuesta.query.order_by(Encuesta.fecha_creacion.desc()).all()
+    total_encuestas = len(encuestas)
+    total_preguntas = sum(len(e.preguntas) for e in encuestas)
+    total_respuestas = sum(1 for e in encuestas for r in e.respuestas if in_range(r.fecha_completada))
+    total_ubicaciones = sum(
+        1
+        for e in encuestas
+        for r in e.respuestas
+        if r.latitude is not None and r.longitude is not None and in_range(r.fecha_completada)
+    )
+    active_encuestas = sum(1 for e in encuestas if e.activa)
+    respuestas_por_encuesta = [
+        {
+            'id': e.id,
+            'titulo': e.titulo,
+            'respuestas': sum(1 for r in e.respuestas if in_range(r.fecha_completada)),
+            'preguntas': len(e.preguntas),
+            'ubicaciones': sum(1 for r in e.respuestas if r.latitude is not None and r.longitude is not None and in_range(r.fecha_completada)),
+            'activa': e.activa,
+        }
+        for e in encuestas
+    ]
+    selected_id = request.args.get('id', type=int)
+    selected_encuesta = None
+    if selected_id:
+        selected_encuesta = Encuesta.query.get(selected_id)
+    if not selected_encuesta and encuestas:
+        selected_encuesta = encuestas[0]
+        selected_id = selected_encuesta.id
+
+    selected_stats = None
+    timeline_labels = []
+    timeline_values = []
+    if selected_encuesta:
+        filtered_respuestas = [r for r in selected_encuesta.respuestas if in_range(r.fecha_completada)]
+        selected_stats = {
+            'id': selected_encuesta.id,
+            'titulo': selected_encuesta.titulo,
+            'respuestas': len(filtered_respuestas),
+            'preguntas': len(selected_encuesta.preguntas),
+            'ubicaciones': sum(1 for r in filtered_respuestas if r.latitude is not None and r.longitude is not None),
+            'activa': selected_encuesta.activa,
+        }
+        dates = [r.fecha_completada.strftime('%d/%m/%Y') for r in filtered_respuestas]
+        counter = Counter(dates)
+        timeline_labels = sorted(counter.keys(), key=lambda d: tuple(map(int, d.split('/')[::-1])))
+        timeline_values = [counter[label] for label in timeline_labels]
+
+    return render_template(
+        'admin/estadisticas.html',
+        total_encuestas=total_encuestas,
+        total_preguntas=total_preguntas,
+        total_respuestas=total_respuestas,
+        total_ubicaciones=total_ubicaciones,
+        active_encuestas=active_encuestas,
+        respuestas_por_encuesta=respuestas_por_encuesta,
+        selected_stats=selected_stats,
+        selected_id=selected_id,
+        timeline_labels=timeline_labels,
+        timeline_values=timeline_values,
+        encuestas=encuestas,
+        start_date=start_date,
+        end_date=end_date,
+    )
 
 @admin_bp.route('/encuesta/<int:id>/toggle', methods=['POST'])
 @admin_required

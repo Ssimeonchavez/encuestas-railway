@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="card-footer text-muted small">
-                Publicada: {{ encuesta.fecha_creacion.strftime('%d/%m/%Y') }}
+                Publicada: {{ encuesta.fecha_creacion|format_datetime('%d/%m/%Y') }}
             </div>
         </div>
     </div>

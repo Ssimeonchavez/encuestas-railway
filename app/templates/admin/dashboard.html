@@ -8,14 +8,14 @@
         <h2 class="page-title mb-2">📋 Panel de Administración</h2>
         <p class="page-subtitle">Crea, administra y revisa tus encuestas con una interfaz calmada y ordenada.</p>
     </div>
-    <a href="{{ url_for('admin.crear_encuesta') }}" class="btn btn-primary mt-3 mt-md-0">
-        + Nueva Encuesta
-    </a>
-</div>
-
-<div class="row">
-    {% for encuesta in encuestas %}
-    <div class="col-md-6 col-lg-4 mb-4">
+    <div class="d-flex gap-2 flex-wrap mt-3 mt-md-0">
+        <a href="{{ url_for('admin.estadisticas') }}" class="btn btn-outline-primary">
+            Estadísticas
+        </a>
+        <a href="{{ url_for('admin.crear_encuesta') }}" class="btn btn-primary">
+            + Nueva Encuesta
+        </a>
+    </div>
         <div class="card survey-card h-100 fade-up" style="animation-delay: {{ (loop.index0 * 0.06)|round(2) }}s;">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start gap-3">
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="card-footer text-muted small">
-                Creada: {{ encuesta.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}
+                Creada: {{ encuesta.fecha_creacion|format_datetime('%d/%m/%Y %H:%M') }}
             </div>
         </div>
     </div>

@@ -27,7 +27,7 @@
     </div>
     <div class="col-md-4 mb-3">
         <div class="card text-center p-3 fade-up fade-up-delay-3">
-            <h3 class="text-primary">{{ encuesta.fecha_creacion.strftime('%d/%m/%Y') }}</h3>
+            <h3 class="text-primary">{{ encuesta.fecha_creacion|format_datetime('%d/%m/%Y') }}</h3>
             <p class="text-muted mb-0">Fecha de creación</p>
         </div>
     </div>
@@ -49,6 +49,16 @@
     </div>
 </div>
 
+{% if fuera_peru_count > 0 %}
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="alert alert-warning fade-up fade-up-delay-5" role="alert">
+            <strong>{{ fuera_peru_count }} respuesta{{ 's' if fuera_peru_count != 1 else '' }} fuera de Perú</strong> se registró{{ 'n' if fuera_peru_count != 1 else '' }} desde otra zona horaria.
+        </div>
+    </div>
+</div>
+{% endif %}
+
 <div class="card mb-4 mt-4 fade-up fade-up-delay-5">
     <div class="card-header bg-white">
         <strong>Lista de respuestas y ubicación</strong>
@@ -61,13 +71,14 @@
                     <th>Fecha</th>
                     <th>IP</th>
                     <th>Ubicación</th>
+                    <th>Zona</th>
                 </tr>
             </thead>
             <tbody>
                 {% for respuesta_encuesta in encuesta.respuestas %}
                 <tr>
                     <td>{{ loop.index }}</td>
-                    <td>{{ respuesta_encuesta.fecha_completada.strftime('%d/%m/%Y %H:%M') }}</td>
+                    <td>{{ respuesta_encuesta.fecha_completada|format_datetime_dual(respuesta_encuesta.timezone) }}</td>
                     <td>{{ respuesta_encuesta.ip_address or 'N/A' }}</td>
                     <td>
                         {% if respuesta_encuesta.latitude is not none and respuesta_encuesta.longitude is not none %}
@@ -76,6 +87,14 @@
                             </a>
                         {% else %}
                             <span class="text-muted">No disponible</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% set zone = respuesta_encuesta.timezone or 'America/Lima' %}
+                        {% if zone == 'America/Lima' %}
+                            <span class="badge bg-success">Perú</span>
+                        {% else %}
+                            <span class="badge bg-warning text-dark">Fuera de Perú - {{ zone|timezone_label }}</span>
                         {% endif %}
                     </td>
                 </tr>
@@ -102,7 +121,7 @@
                 {% for respuesta in pregunta.respuestas %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     {{ respuesta.valor }}
-                    <small class="text-muted">{{ respuesta.fecha.strftime('%d/%m %H:%M') }}</small>
+                    <small class="text-muted">{{ respuesta.fecha|format_datetime('%d/%m %H:%M') }}</small>
                 </li>
                 {% endfor %}
             </ul>

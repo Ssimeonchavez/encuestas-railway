@@ -15,12 +15,14 @@
         </div>
 
         <form method="POST">
+            <input type="hidden" name="timezone" id="timezone" value="America/Lima">
             {% if encuesta.recolectar_ubicacion %}
             <div class="card mb-3 p-3 fade-up" style="animation-delay: 0.05s;">
                 <label class="form-label fw-bold mb-2">Compartir ubicación</label>
                 <p class="text-muted">Al activar, se solicitará permiso para obtener tu ubicación y se mostrará un mapa junto a tus respuestas.</p>
                 <button type="button" id="locateBtn" class="btn btn-outline-primary btn-sm mb-2">Obtener mi ubicación</button>
                 <p id="locationStatus" class="small text-muted mb-2" style="min-height:1.2rem;"></p>
+                <p id="timezoneHint" class="small text-muted mb-2">Zona horaria detectada: <span id="timezoneName">Perú</span></p>
                 <div id="map" style="height:200px; display:none; margin-top:8px;"></div>
                 <input type="hidden" name="latitude" id="latitude">
                 <input type="hidden" name="longitude" id="longitude">
@@ -86,6 +88,19 @@
         document.addEventListener('DOMContentLoaded', function () {
             const locateBtn = document.getElementById('locateBtn');
             const locationStatus = document.getElementById('locationStatus');
+            const timezoneInput = document.getElementById('timezone');
+            const timezoneName = document.getElementById('timezoneName');
+
+            const browserTimeZone = (Intl && Intl.DateTimeFormat)
+                ? Intl.DateTimeFormat().resolvedOptions().timeZone
+                : 'America/Lima';
+            const resolvedTimeZone = browserTimeZone || 'America/Lima';
+            if (timezoneInput) {
+                timezoneInput.value = resolvedTimeZone;
+            }
+            if (timezoneName) {
+                timezoneName.textContent = resolvedTimeZone === 'America/Lima' ? 'Perú' : resolvedTimeZone;
+            }
             if (!locateBtn || !locationStatus) return;
 
             let map, marker;

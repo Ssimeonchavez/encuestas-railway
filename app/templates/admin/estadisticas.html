@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block title %}Estadísticas - Administración{% endblock %}
+
+{% block content %}
+<div class="mb-4 fade-up">
+    <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline-secondary btn-sm">← Volver</a>
+</div>
+
+<div class="page-header fade-up">
+    <h2 class="page-title">📈 Estadísticas de Encuestas</h2>
+    <p class="page-subtitle">Visualiza datos generales y por encuesta de forma clara e intuitiva.</p>
+</div>
+
+<div class="card p-4 fade-up mb-4">
+    <form method="GET" class="row gx-3 gy-3 align-items-end">
+        <div class="col-md-4">
+            <label class="form-label">Encuesta</label>
+            <select name="id" class="form-select" onchange="this.form.submit()">
+                {% for encuesta in encuestas %}
+                    <option value="{{ encuesta.id }}" {% if selected_id == encuesta.id %}selected{% endif %}>{{ encuesta.titulo }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Fecha inicio</label>
+            <input type="date" name="start_date" class="form-control" value="{{ start_date.isoformat() if start_date else '' }}">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Fecha fin</label>
+            <input type="date" name="end_date" class="form-control" value="{{ end_date.isoformat() if end_date else '' }}">
+        </div>
+        <div class="col-md-2 d-grid">
+            <button type="submit" class="btn btn-primary">Aplicar filtro</button>
+        </div>
+        <div class="col-md-2 d-grid">
+            <a href="{{ url_for('admin.estadisticas', id=selected_id) if selected_id else url_for('admin.estadisticas') }}" class="btn btn-outline-secondary">Limpiar filtro</a>
+        </div>
+    </form>
+    {% if start_date or end_date %}
+    <div class="mt-3 text-muted small">
+        Filtrando respuestas{% if start_date %} desde {{ start_date.strftime('%d/%m/%Y') }}{% endif %}{% if end_date %} hasta {{ end_date.strftime('%d/%m/%Y') }}{% endif %}.
+    </div>
+    {% endif %}
+</div>
+
+<div class="row mt-4">
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card p-4 fade-up">
+            <h3 class="text-primary">{{ total_encuestas }}</h3>
+            <p class="text-muted mb-0">Encuestas creadas</p>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card p-4 fade-up">
+            <h3 class="text-primary">{{ total_respuestas }}</h3>
+            <p class="text-muted mb-0">Respuestas recibidas</p>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card p-4 fade-up">
+            <h3 class="text-primary">{{ total_ubicaciones }}</h3>
+            <p class="text-muted mb-0">Ubicaciones capturadas</p>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card p-4 fade-up">
+            <h3 class="text-primary">{{ total_preguntas }}</h3>
+            <p class="text-muted mb-0">Preguntas totales</p>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-lg-8 mb-4 fade-up">
+        <div class="card p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5 class="mb-1">Respuestas por encuesta</h5>
+                    <p class="text-muted mb-0">Observa qué encuestas reciben más participación.</p>
+                </div>
+            </div>
+            <canvas id="responsesChart" height="120"></canvas>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-4 fade-up">
+        <div class="card p-4">
+            <h5 class="mb-3">Encuesta seleccionada</h5>
+            {% if selected_stats %}
+            <form method="GET" class="mb-3">
+                <input type="hidden" name="start_date" value="{{ start_date.isoformat() if start_date else '' }}">
+                <input type="hidden" name="end_date" value="{{ end_date.isoformat() if end_date else '' }}">
+                <label class="form-label">Seleccionar encuesta</label>
+                <select name="id" class="form-select" onchange="this.form.submit()">
+                    {% for encuesta in encuestas %}
+                        <option value="{{ encuesta.id }}" {% if selected_stats and encuesta.id == selected_stats.id %}selected{% endif %}>{{ encuesta.titulo }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+            <div class="mb-3">
+                <h6 class="mb-1">{{ selected_stats.titulo }}</h6>
+                <p class="text-muted mb-2">{{ 'Activa' if selected_stats.activa else 'Inactiva' }}</p>
+                <div class="d-flex justify-content-between">
+                    <span class="text-muted">Respuestas</span>
+                    <strong>{{ selected_stats.respuestas }}</strong>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <span class="text-muted">Preguntas</span>
+                    <strong>{{ selected_stats.preguntas }}</strong>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <span class="text-muted">Ubicaciones</span>
+                    <strong>{{ selected_stats.ubicaciones }}</strong>
+                </div>
+            </div>
+            <div>
+                <h6 class="mb-3">Actividad reciente</h6>
+                {% if timeline_labels %}
+                <canvas id="timelineChart" height="200"></canvas>
+                {% else %}
+                <p class="text-muted">No hay respuestas registradas aún para esta encuesta.</p>
+                {% endif %}
+            </div>
+            {% else %}
+                <p class="text-muted">No hay encuestas disponibles para mostrar estadísticas.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2 fade-up">
+    <div class="col-12">
+        <div class="card p-4">
+            <h5 class="mb-3">Listado de encuestas</h5>
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th>Encuesta</th>
+                            <th>Respuestas</th>
+                            <th>Ubicaciones</th>
+                            <th>Preguntas</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for encuesta in respuestas_por_encuesta %}
+                        <tr>
+                            <td>{{ encuesta.titulo }}</td>
+                            <td>{{ encuesta.respuestas }}</td>
+                            <td>{{ encuesta.ubicaciones }}</td>
+                            <td>{{ encuesta.preguntas }}</td>
+                            <td>
+                                {% if encuesta.activa %}
+                                    <span class="badge bg-success">Activa</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">Inactiva</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ url_for('admin.ver_resultados', id=encuesta.id) }}" class="btn btn-outline-primary btn-sm">
+                                    Ver resultados
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const chartLabels = {{ respuestas_por_encuesta|map(attribute='titulo')|list|tojson|safe }};
+        const chartData = {{ respuestas_por_encuesta|map(attribute='respuestas')|list|tojson|safe }};
+
+        const ctx = document.getElementById('responsesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartLabels,
+                datasets: [{
+                    label: 'Respuestas',
+                    data: chartData,
+                    backgroundColor: 'rgba(180, 83, 9, 0.65)',
+                    borderColor: 'rgba(180, 83, 9, 1)',
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 }
+                    }
+                }
+            }
+        });
+
+        {% if selected_stats and timeline_labels %}
+        const timelineCtx = document.getElementById('timelineChart').getContext('2d');
+        new Chart(timelineCtx, {
+            type: 'line',
+            data: {
+                labels: {{ timeline_labels|tojson|safe }},
+                datasets: [{
+                    label: 'Respuestas por día',
+                    data: {{ timeline_values|tojson|safe }},
+                    backgroundColor: 'rgba(249, 115, 22, 0.2)',
+                    borderColor: 'rgba(249, 115, 22, 1)',
+                    pointBackgroundColor: 'rgba(249, 115, 22, 1)',
+                    tension: 0.25,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 }
+                    }
+                }
+            }
+        });
+        {% endif %}
+    </script>
+{% endblock %}

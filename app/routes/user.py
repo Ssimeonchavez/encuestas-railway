@@ -23,6 +23,7 @@ def responder(id):
         # Intentar leer lat/lon enviados (si el creador activó la recolección)
         lat = request.form.get('latitude')
         lon = request.form.get('longitude')
+        timezone_value = request.form.get('timezone') or 'America/Lima'
         try:
             lat_val = float(lat) if lat else None
         except ValueError:
@@ -36,7 +37,8 @@ def responder(id):
             encuesta_id=id,
             ip_address=request.remote_addr,
             latitude=lat_val,
-            longitude=lon_val
+            longitude=lon_val,
+            timezone=timezone_value
         )
         db.session.add(respuesta_encuesta)
         db.session.flush()

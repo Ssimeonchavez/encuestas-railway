@@ -46,6 +46,7 @@ class RespuestaEncuesta(db.Model):
     ip_address = db.Column(db.String(45))
     latitude = db.Column(db.Float, nullable=True)
     longitude = db.Column(db.Float, nullable=True)
+    timezone = db.Column(db.String(64), nullable=True)
     
     respuestas = db.relationship('Respuesta', backref='respuesta_encuesta', lazy=True, cascade='all, delete-orphan')
 
