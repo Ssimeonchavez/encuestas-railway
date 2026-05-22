@@ -26,6 +26,7 @@
                 <input type="hidden" name="longitude" id="longitude">
             </div>
             {% endif %}
+            
             {% for pregunta in encuesta.preguntas|sort(attribute='orden') %}
             <div class="card mb-3 p-3 fade-up" style="animation-delay: {{ (loop.index0 * 0.06)|round(2) }}s;">
                 <label class="form-label fw-bold mb-2">
@@ -104,6 +105,7 @@
             function showMap(lat, lon) {
                 const mapDiv = document.getElementById('map');
                 mapDiv.style.display = 'block';
+                
                 if (!map) {
                     map = L.map('map').setView([lat, lon], 13);
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -111,9 +113,15 @@
                         attribution: '&copy; OpenStreetMap contributors'
                     }).addTo(map);
                     marker = L.marker([lat, lon]).addTo(map);
+                    
+                    // Ajuste de tamaño para evitar el mapa gris/incompleto
+                    setTimeout(function() {
+                        map.invalidateSize();
+                    }, 100);
                 } else {
                     map.setView([lat, lon], 13);
                     marker.setLatLng([lat, lon]);
+                    map.invalidateSize();
                 }
             }
 
