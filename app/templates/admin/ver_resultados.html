@@ -3,37 +3,39 @@
 {% block title %}Resultados - {{ encuesta.titulo }}{% endblock %}
 
 {% block content %}
-<div class="mb-4">
+<div class="mb-4 fade-up">
     <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline-secondary btn-sm">← Volver</a>
 </div>
 
-<h2>📊 {{ encuesta.titulo }}</h2>
-<p class="text-muted">{{ encuesta.descripcion }}</p>
+<div class="page-header fade-up">
+    <h2 class="page-title">📊 {{ encuesta.titulo }}</h2>
+    <p class="page-subtitle">{{ encuesta.descripcion }}</p>
+</div>
 
 <div class="row mt-4">
-    <div class="col-md-4">
-        <div class="card text-center p-3">
+    <div class="col-md-4 mb-3">
+        <div class="card text-center p-3 fade-up fade-up-delay-1">
             <h3 class="text-primary">{{ encuesta.respuestas|length }}</h3>
             <p class="text-muted mb-0">Respuestas totales</p>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card text-center p-3">
+    <div class="col-md-4 mb-3">
+        <div class="card text-center p-3 fade-up fade-up-delay-2">
             <h3 class="text-primary">{{ encuesta.preguntas|length }}</h3>
             <p class="text-muted mb-0">Preguntas</p>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card text-center p-3">
+    <div class="col-md-4 mb-3">
+        <div class="card text-center p-3 fade-up fade-up-delay-3">
             <h3 class="text-primary">{{ encuesta.fecha_creacion.strftime('%d/%m/%Y') }}</h3>
             <p class="text-muted mb-0">Fecha de creación</p>
         </div>
     </div>
 </div>
 
-<h4 class="mt-5 mb-3">Respuestas por pregunta</h4>
+<h4 class="mt-5 mb-3 fade-up fade-up-delay-1">Respuestas por pregunta</h4>
 {% for pregunta in encuesta.preguntas %}
-<div class="card mb-3">
+<div class="card mb-3 fade-up" style="animation-delay: {{ (loop.index0 * 0.06)|round(2) }}s;">
     <div class="card-header bg-white">
         <strong>{{ pregunta.texto }}</strong>
         <span class="badge bg-secondary ms-2">{{ pregunta.tipo }}</span>

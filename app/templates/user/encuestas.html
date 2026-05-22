@@ -3,15 +3,15 @@
 {% block title %}Encuestas Disponibles{% endblock %}
 
 {% block content %}
-<div class="text-center mb-5">
-    <h1>📋 Encuestas Disponibles</h1>
-    <p class="text-muted">Tu opinión es importante. Participa en nuestras encuestas.</p>
+<div class="page-header fade-up">
+    <h1 class="page-title">📋 Encuestas Disponibles</h1>
+    <p class="page-subtitle">Tu opinión es importante. Participa en nuestras encuestas.</p>
 </div>
 
 <div class="row">
     {% for encuesta in encuestas %}
     <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card survey-card h-100">
+        <div class="card survey-card h-100 fade-up" style="animation-delay: {{ (loop.index0 * 0.06)|round(2) }}s;">
             <div class="card-body">
                 <h5 class="card-title">{{ encuesta.titulo }}</h5>
                 <p class="card-text text-muted">{{ encuesta.descripcion or 'Sin descripción' }}</p>
@@ -28,7 +28,7 @@
         </div>
     </div>
     {% else %}
-    <div class="col-12 text-center py-5">
+    <div class="col-12 text-center py-5 fade-up" style="animation-delay: 0.1s;">
         <h4 class="text-muted">No hay encuestas disponibles en este momento</h4>
         <p class="text-muted">Vuelve más tarde para ver nuevas encuestas.</p>
     </div>

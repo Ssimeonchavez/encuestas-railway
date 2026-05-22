@@ -5,18 +5,19 @@
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-lg-8">
-        <div class="card p-4">
-            <h3 class="mb-4">✏️ Crear Nueva Encuesta</h3>
+        <div class="card p-4 fade-up">
+            <h3 class="mb-3 page-title">✏️ Crear Nueva Encuesta</h3>
+            <p class="page-subtitle mb-4">Diseña tu encuesta con secciones claras y una experiencia visual ligera.</p>
             <form method="POST" id="encuestaForm">
-                <div class="mb-3">
+                <div class="mb-4">
                     <label class="form-label">Título de la encuesta</label>
                     <input type="text" name="titulo" class="form-control" required>
                 </div>
-                <div class="mb-3">
+                <div class="mb-4">
                     <label class="form-label">Descripción</label>
                     <textarea name="descripcion" class="form-control" rows="2"></textarea>
                 </div>
-                <div class="form-check mb-3">
+                <div class="form-check mb-4">
                     <input class="form-check-input" type="checkbox" value="on" id="recolectar_ubicacion" name="recolectar_ubicacion">
                     <label class="form-check-label" for="recolectar_ubicacion">
                         Solicitar ubicación al momento de responder (mostrará mapa junto a la respuesta)
@@ -24,10 +25,8 @@
                 </div>
 
                 <hr class="my-4">
-                <h5>Preguntas</h5>
-                <div id="preguntas-container">
-                    <!-- Las preguntas se agregan aquí dinámicamente -->
-                </div>
+                <h5 class="mb-3">Preguntas</h5>
+                <div id="preguntas-container"></div>
 
                 <button type="button" class="btn btn-outline-primary w-100 mb-4" onclick="agregarPregunta()">
                     + Agregar Pregunta

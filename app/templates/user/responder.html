@@ -5,28 +5,28 @@
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-lg-8">
-        <div class="mb-4">
+        <div class="mb-4 fade-up">
             <a href="{{ url_for('user.index') }}" class="btn btn-outline-secondary btn-sm">← Volver</a>
         </div>
 
-        <div class="card p-4 mb-4">
-            <h3>{{ encuesta.titulo }}</h3>
-            <p class="text-muted">{{ encuesta.descripcion }}</p>
+        <div class="card p-4 mb-4 fade-up">
+            <h3 class="page-title mb-2">{{ encuesta.titulo }}</h3>
+            <p class="page-subtitle">{{ encuesta.descripcion }}</p>
         </div>
 
-            <form method="POST">
-                {% if encuesta.recolectar_ubicacion %}
-                <div class="card mb-3 p-3">
-                    <label class="form-label fw-bold mb-2">Compartir ubicación</label>
-                    <p class="text-muted">Al activar, se solicitará permiso para obtener tu ubicación y se mostrará un mapa junto a tus respuestas.</p>
-                    <button type="button" id="locateBtn" class="btn btn-outline-primary btn-sm mb-2">Obtener mi ubicación</button>
-                    <div id="map" style="height:200px; display:none; margin-top:8px;"></div>
-                    <input type="hidden" name="latitude" id="latitude">
-                    <input type="hidden" name="longitude" id="longitude">
-                </div>
-                {% endif %}
+        <form method="POST">
+            {% if encuesta.recolectar_ubicacion %}
+            <div class="card mb-3 p-3 fade-up" style="animation-delay: 0.05s;">
+                <label class="form-label fw-bold mb-2">Compartir ubicación</label>
+                <p class="text-muted">Al activar, se solicitará permiso para obtener tu ubicación y se mostrará un mapa junto a tus respuestas.</p>
+                <button type="button" id="locateBtn" class="btn btn-outline-primary btn-sm mb-2">Obtener mi ubicación</button>
+                <div id="map" style="height:200px; display:none; margin-top:8px;"></div>
+                <input type="hidden" name="latitude" id="latitude">
+                <input type="hidden" name="longitude" id="longitude">
+            </div>
+            {% endif %}
             {% for pregunta in encuesta.preguntas|sort(attribute='orden') %}
-            <div class="card mb-3 p-3">
+            <div class="card mb-3 p-3 fade-up" style="animation-delay: {{ (loop.index0 * 0.06)|round(2) }}s;">
                 <label class="form-label fw-bold mb-2">
                     {{ pregunta.texto }}
                     {% if pregunta.tipo == 'opcion_multiple' %}
@@ -66,7 +66,7 @@
             </div>
             {% endfor %}
 
-            <div class="d-grid mt-4">
+            <div class="d-grid mt-4 fade-up" style="animation-delay: 0.1s;">
                 <button type="submit" class="btn btn-primary btn-lg">Enviar Respuestas</button>
             </div>
         </form>
