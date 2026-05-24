@@ -16,6 +16,11 @@
             + Nueva Encuesta
         </a>
     </div>
+</div>
+
+<div class="row mt-4">
+    {% for encuesta in encuestas %}
+    <div class="col-md-4 mb-3">
         <div class="card survey-card h-100 fade-up" style="animation-delay: {{ (loop.index0 * 0.06)|round(2) }}s;">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start gap-3">
