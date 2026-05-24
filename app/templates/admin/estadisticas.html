@@ -178,13 +178,40 @@
     <script>
         const chartLabels = {{ respuestas_por_encuesta|map(attribute='titulo')|list|tojson|safe }};
         const chartData = {{ respuestas_por_encuesta|map(attribute='respuestas')|list|tojson|safe }};
+        const chartIds = {{ respuestas_por_encuesta|map(attribute='id')|list|tojson|safe }};
+        const selectedId = {{ selected_id if selected_id is not none else 'null' }};
+
+        // Paleta de colores (RGBA para background, bordes usan alpha=1)
+        const palette = [
+            'rgba(54,162,235,0.65)',
+            'rgba(75,192,192,0.65)',
+            'rgba(255,205,86,0.65)',
+            'rgba(255,99,132,0.65)',
+            'rgba(153,102,255,0.65)',
+            'rgba(201,203,207,0.65)'
+        ];
+        const paletteBorder = palette.map(c => c.replace(/0\.65\)$/, '1)'));
+
+        // Determinar índice seleccionado (si aplica)
+        let selectedIndex = -1;
+        if (selectedId !== null) {
+            selectedIndex = chartIds.indexOf(parseInt(selectedId));
+        }
+
+        const bgColors = chartData.map((_, i) => {
+            if (selectedIndex >= 0) return i === selectedIndex ? 'rgba(40,116,240,0.9)' : 'rgba(200,200,200,0.25)';
+            return palette[i % palette.length];
+        });
+        const borderColors = chartData.map((_, i) => {
+            if (selectedIndex >= 0) return i === selectedIndex ? 'rgba(40,116,240,1)' : 'rgba(200,200,200,0.5)';
+            return paletteBorder[i % paletteBorder.length];
+        });
 
         const ctx = document.getElementById('responsesChart').getContext('2d');
-        // Si ya existe una instancia en ese canvas, destruirla antes de crear otra
         try {
             const existing = Chart.getChart('responsesChart');
             if (existing) existing.destroy();
-        } catch(e) { /* ignore if Chart.getChart no está disponible */ }
+        } catch(e) { }
         const responsesChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -192,8 +219,8 @@
                 datasets: [{
                     label: 'Respuestas',
                     data: chartData,
-                    backgroundColor: 'rgba(180, 83, 9, 0.65)',
-                    borderColor: 'rgba(180, 83, 9, 1)',
+                    backgroundColor: bgColors,
+                    borderColor: borderColors,
                     borderWidth: 1,
                 }]
             },
