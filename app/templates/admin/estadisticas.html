@@ -80,7 +80,7 @@
                     <p class="text-muted mb-0">Observa qué encuestas reciben más participación.</p>
                 </div>
             </div>
-            <canvas id="responsesChart" height="120"></canvas>
+            <canvas id="responsesChart" height="120" style="height:200px; max-height:400px;"></canvas>
         </div>
     </div>
     <div class="col-lg-4 mb-4 fade-up">
@@ -116,7 +116,7 @@
             <div>
                 <h6 class="mb-3">Actividad reciente</h6>
                 {% if timeline_labels %}
-                <canvas id="timelineChart" height="200"></canvas>
+                <canvas id="timelineChart" height="200" style="height:180px; max-height:320px;"></canvas>
                 {% else %}
                 <p class="text-muted">No hay respuestas registradas aún para esta encuesta.</p>
                 {% endif %}
@@ -180,7 +180,12 @@
         const chartData = {{ respuestas_por_encuesta|map(attribute='respuestas')|list|tojson|safe }};
 
         const ctx = document.getElementById('responsesChart').getContext('2d');
-        new Chart(ctx, {
+        // Si ya existe una instancia en ese canvas, destruirla antes de crear otra
+        try {
+            const existing = Chart.getChart('responsesChart');
+            if (existing) existing.destroy();
+        } catch(e) { /* ignore if Chart.getChart no está disponible */ }
+        const responsesChart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: chartLabels,
@@ -209,7 +214,11 @@
 
         {% if selected_stats and timeline_labels %}
         const timelineCtx = document.getElementById('timelineChart').getContext('2d');
-        new Chart(timelineCtx, {
+        try {
+            const existingTl = Chart.getChart('timelineChart');
+            if (existingTl) existingTl.destroy();
+        } catch(e) { }
+        const timelineChart = new Chart(timelineCtx, {
             type: 'line',
             data: {
                 labels: {{ timeline_labels|tojson|safe }},
